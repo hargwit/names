@@ -1,5 +1,14 @@
 import { useState } from 'react'
 import db from '../firebase'
+import { GAME_STATE } from '../constants'
+
+const initialGame = (id) => ({
+  id,
+  numPlayers: 1,
+  names: [],
+  round: 1,
+  state: GAME_STATE.LOBBY,
+})
 
 const useCreateGame = () => {
   const [loading, setLoading] = useState(false)
@@ -9,12 +18,7 @@ const useCreateGame = () => {
     return db
       .collection('games')
       .doc(id)
-      .set({
-        id,
-        numPlayers: 1,
-        names: [],
-        round: 1,
-      })
+      .set(initialGame(id))
       .then(() => id)
   }
   return [createGame, loading]

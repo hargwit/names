@@ -1,7 +1,9 @@
 import React from 'react'
+import { navigate } from '@reach/router'
 import { useGame } from '../game/game-provider'
 import { container, column, alignCenter, justifyEven } from '../layout/styles'
 import { Button } from 'react-bootstrap'
+import { useStartGame } from './api'
 
 const styles = {
   button: {
@@ -12,6 +14,11 @@ const styles = {
 
 const Lobby = () => {
   const game = useGame()
+  const [startGame, starting] = useStartGame(game.id)
+
+  const start = () => {
+    startGame().then(() => navigate(`/round/${game.round}`))
+  }
 
   return (
     <div
@@ -36,8 +43,14 @@ const Lobby = () => {
           Number of names: <strong>{game.names.length}</strong>
         </p>
       </div>
-      <Button style={styles.button} variant='primary' size='lg'>
-        Start game
+      <Button
+        disabled={starting}
+        onClick={start}
+        style={styles.button}
+        variant='primary'
+        size='lg'
+      >
+        {starting ? 'Starting...' : 'Start game'}
       </Button>
     </div>
   )
