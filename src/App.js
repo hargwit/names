@@ -13,15 +13,10 @@ function App() {
       <Router style={{ height: '100%' }}>
         <Home path='/' />
         <JoinGame path='/join' />
-        <Game
-          path='/:gameCode/*'
-          subRoutes={() => (
-            <Router style={{ height: '100%' }}>
-              <EnterNames path='/names' />
-              <Lobby path='/lobby' />
-            </Router>
-          )}
-        ></Game>
+        <Game path='/:gameCode'>
+          <EnterNames path='/names' />
+          <Lobby path='/lobby' />
+        </Game>
       </Router>
     </div>
   )
