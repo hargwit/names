@@ -10,6 +10,7 @@ import { column, alignCenter } from '../layout/styles'
 import { Container } from '../layout/container'
 
 import { Loading } from '../loading/loading'
+import { useUserID } from '../user-context/user-provider'
 
 const styles = {
   button: {
@@ -19,10 +20,11 @@ const styles = {
 }
 
 const Home = () => {
+  const userID = useUserID()
   const [createGame, loading] = useCreateGame()
 
   function createAGame() {
-    createGame().then((id) => navigate(`/${id}/names`))
+    createGame(userID).then((id) => navigate(`/${id}/names`))
   }
 
   return loading ? (
