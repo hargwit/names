@@ -1,11 +1,15 @@
 import React from 'react'
 
-import { Button, Spinner } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { navigate } from '@reach/router'
 
 import { useCreateGame } from './api'
 
-import { container, column, alignCenter, justifyEven } from '../layout/styles'
+import { column, alignCenter } from '../layout/styles'
+
+import { Container } from '../layout/container'
+
+import { Loading } from '../loading/loading'
 
 const styles = {
   button: {
@@ -21,46 +25,35 @@ const Home = () => {
     createGame().then((id) => navigate(`/${id}/names`))
   }
 
-  return (
-    <div
-      style={{
-        ...container,
-        ...column,
-        ...alignCenter,
-        ...justifyEven,
-      }}
-    >
-      {loading ? (
-        <Spinner animation='border' />
-      ) : (
-        <>
-          <h1>Names</h1>
-          <div
-            style={{
-              ...column,
-              ...alignCenter,
-            }}
-          >
-            <Button
-              onClick={createAGame}
-              style={styles.button}
-              variant='primary'
-              size='lg'
-            >
-              Create a game
-            </Button>
-            <Button
-              style={styles.button}
-              variant='secondary'
-              size='lg'
-              href='/join'
-            >
-              Join a game
-            </Button>
-          </div>
-        </>
-      )}
-    </div>
+  return loading ? (
+    <Loading />
+  ) : (
+    <Container>
+      <h1>Names</h1>
+      <div
+        style={{
+          ...column,
+          ...alignCenter,
+        }}
+      >
+        <Button
+          onClick={createAGame}
+          style={styles.button}
+          variant='primary'
+          size='lg'
+        >
+          Create a game
+        </Button>
+        <Button
+          style={styles.button}
+          variant='secondary'
+          size='lg'
+          href='/join'
+        >
+          Join a game
+        </Button>
+      </div>
+    </Container>
   )
 }
 

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { Spinner } from 'react-bootstrap'
 import db from '../firebase'
-import { container, column, alignCenter, justifyEven } from '../layout/styles'
+
+import { Loading } from '../loading/loading'
 
 const GameContext = createContext()
 
@@ -20,16 +20,7 @@ const GameProvider = ({ gameCode, children }) => {
   }, [gameCode])
 
   return loading ? (
-    <div
-      style={{
-        ...container,
-        ...column,
-        ...alignCenter,
-        ...justifyEven,
-      }}
-    >
-      <Spinner animation='border' />
-    </div>
+    <Loading />
   ) : (
     <GameContext.Provider value={game}>{children}</GameContext.Provider>
   )

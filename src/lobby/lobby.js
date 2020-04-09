@@ -1,9 +1,11 @@
 import React from 'react'
 import { navigate } from '@reach/router'
 import { useGame } from '../game/game-provider'
-import { container, column, alignCenter, justifyEven } from '../layout/styles'
+import { column, alignCenter } from '../layout/styles'
 import { Button } from 'react-bootstrap'
 import { useStartGame } from './api'
+
+import { Container } from '../layout/container'
 
 const styles = {
   button: {
@@ -21,14 +23,7 @@ const Lobby = () => {
   }
 
   return (
-    <div
-      style={{
-        ...container,
-        ...column,
-        ...alignCenter,
-        ...justifyEven,
-      }}
-    >
+    <Container>
       <h1>Game {game.id}</h1>
       <div
         style={{
@@ -52,7 +47,7 @@ const Lobby = () => {
       >
         {starting ? 'Starting...' : 'Start game'}
       </Button>
-    </div>
+    </Container>
   )
 }
 

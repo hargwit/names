@@ -10,7 +10,7 @@ import { Lobby } from './lobby/lobby'
 function App() {
   return (
     <div className='App'>
-      <Router style={{ height: '100%' }}>
+      <Router>
         <Home path='/' />
         <JoinGame path='/join' />
         <Game path='/:gameCode'>
