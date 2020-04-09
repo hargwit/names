@@ -6,18 +6,21 @@ import { Game } from './game/game'
 import './firebase'
 import { EnterNames } from './enter-names/enter-names'
 import { Lobby } from './lobby/lobby'
+import { UserProvider } from './user-context/user-provider'
 
 function App() {
   return (
     <div className='App'>
-      <Router>
-        <Home path='/' />
-        <JoinGame path='/join' />
-        <Game path='/:gameCode'>
-          <EnterNames path='/names' />
-          <Lobby path='/lobby' />
-        </Game>
-      </Router>
+      <UserProvider>
+        <Router>
+          <Home path='/' />
+          <JoinGame path='/join' />
+          <Game path='/:gameCode'>
+            <EnterNames path='/names' />
+            <Lobby path='/lobby' />
+          </Game>
+        </Router>
+      </UserProvider>
     </div>
   )
 }

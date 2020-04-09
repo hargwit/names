@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Form, Button, Spinner } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 
 import { column, alignCenter } from '../layout/styles'
 import { useJoinGame } from './api'
