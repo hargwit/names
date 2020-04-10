@@ -24,7 +24,7 @@ const Home = () => {
   const [createGame, loading] = useCreateGame()
 
   function createAGame() {
-    createGame(userID).then((id) => navigate(`/${id}/names`))
+    createGame(userID).then((id) => navigate(`/${id}`))
   }
 
   return loading ? (

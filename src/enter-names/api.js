@@ -6,7 +6,7 @@ const gameRef = (id) => db.collection('games').doc(id)
 const useSubmitNames = (gameCode) => {
   const [loading, setLoading] = useState(false)
 
-  const submitNames = (names) => {
+  const submitNames = (names, userID) => {
     setLoading(true)
     return db
       .runTransaction((transaction) => {
@@ -14,8 +14,19 @@ const useSubmitNames = (gameCode) => {
           if (!result.exists) {
             throw new Error('No game by this code')
           }
-          const newNames = [...result.data().names, ...names]
-          transaction.update(gameRef(gameCode), { names: newNames })
+          const game = result.data()
+          const newNames = [...game.names, ...names]
+          const newPlayers = {
+            ...game.players,
+            [userID]: {
+              ...game.players[userID],
+              enteredNames: true,
+            },
+          }
+          transaction.update(gameRef(gameCode), {
+            names: newNames,
+            players: newPlayers,
+          })
         })
       })
       .then(() => {

@@ -20,7 +20,7 @@ const JoinGame = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    joinGame(gameCode).then(() => navigate(`/${gameCode}/names`))
+    joinGame(gameCode).then(() => navigate(`/${gameCode}`))
   }
 
   return loading ? (

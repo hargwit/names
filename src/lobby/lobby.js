@@ -32,7 +32,7 @@ const Lobby = () => {
         }}
       >
         <p>
-          Number of players: <strong>{game.numPlayers}</strong>
+          Number of players: <strong>{Object.keys(game.players).length}</strong>
         </p>
         <p>
           Number of names: <strong>{game.names.length}</strong>

@@ -4,13 +4,15 @@ import { useGame } from '../game/game-provider'
 import { column, alignCenter } from '../layout/styles'
 import { Form, Button } from 'react-bootstrap'
 import { useSubmitNames } from './api'
-import { navigate } from '@reach/router'
 
 import { Container } from '../layout/container'
 import { Loading } from '../loading/loading'
+import { useUserID } from '../user-context/user-provider'
 
 const EnterNames = () => {
+  const userID = useUserID()
   const game = useGame()
+
   const [submitNames, loading] = useSubmitNames(game.id)
   const [names, setNames] = useState(['', '', '', '', ''])
 
@@ -22,9 +24,7 @@ const EnterNames = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    submitNames(names).then(() => {
-      navigate('lobby')
-    })
+    submitNames(names, userID)
   }
 
   const disableButton =
