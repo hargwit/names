@@ -29,7 +29,7 @@ const GameStateNavigation = ({ children }) => {
       default:
         navigate('/')
     }
-  }, [game])
+  }, [game, userID])
 
   return children
 }

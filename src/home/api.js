@@ -12,6 +12,7 @@ const initialGame = (gameID, userID) => ({
   names: [],
   round: 0,
   state: GAME_STATE.LOBBY,
+  currentPlayer: '',
 })
 
 const useCreateGame = () => {

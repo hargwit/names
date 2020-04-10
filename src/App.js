@@ -8,6 +8,7 @@ import { EnterNames } from './enter-names/enter-names'
 import { Lobby } from './lobby/lobby'
 import { UserProvider } from './user-context/user-provider'
 import { Round } from './round/round'
+import { Play } from './play/play'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <EnterNames path='/names' />
             <Lobby path='/lobby' />
             <Round path='/round/:round/' />
+            <Play path='/round/:round/play' />
           </Game>
         </Router>
       </UserProvider>

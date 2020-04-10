@@ -14,6 +14,8 @@ const styles = {
 const Round = ({ round }) => {
   const game = useGame()
 
+  const namesLeft = game.names.filter((name) => name.lastRound !== round).length
+
   return (
     <Container>
       <h1>Round {round}</h1>
@@ -27,15 +29,23 @@ const Round = ({ round }) => {
           Total names: <strong>{game.names.length}</strong>
         </p>
         <p>
-          Names left:{' '}
-          <strong>
-            {game.names.filter((name) => name.lastRound != round)}
-          </strong>
+          Names left: <strong>{namesLeft}</strong>
         </p>
       </div>
-      <Button style={styles.button} variant='primary' size='lg'>
-        Take my turn
-      </Button>
+      {namesLeft === 0 ? (
+        <Button style={styles.button} variant='primary' size='lg'>
+          End round
+        </Button>
+      ) : (
+        <Button
+          disabled={!!game.currentPlayer}
+          style={styles.button}
+          variant='primary'
+          size='lg'
+        >
+          Take my turn
+        </Button>
+      )}
     </Container>
   )
 }
