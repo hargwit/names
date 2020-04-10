@@ -15,7 +15,12 @@ const useSubmitNames = (gameCode) => {
             throw new Error('No game by this code')
           }
           const game = result.data()
-          const newNames = [...game.names, ...names]
+
+          const newNames = [
+            ...game.names,
+            ...names.map((name) => ({ value: name, lastRound: 0 })),
+          ]
+
           const newPlayers = {
             ...game.players,
             [userID]: {
@@ -23,6 +28,7 @@ const useSubmitNames = (gameCode) => {
               enteredNames: true,
             },
           }
+
           transaction.update(gameRef(gameCode), {
             names: newNames,
             players: newPlayers,

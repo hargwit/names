@@ -27,7 +27,10 @@ const Round = ({ round }) => {
           Total names: <strong>{game.names.length}</strong>
         </p>
         <p>
-          Guessed names: <strong>{game.names.length}</strong>
+          Names left:{' '}
+          <strong>
+            {game.names.filter((name) => name.lastRound != round)}
+          </strong>
         </p>
       </div>
       <Button style={styles.button} variant='primary' size='lg'>
