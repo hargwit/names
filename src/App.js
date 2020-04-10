@@ -7,6 +7,7 @@ import './firebase'
 import { EnterNames } from './enter-names/enter-names'
 import { Lobby } from './lobby/lobby'
 import { UserProvider } from './user-context/user-provider'
+import { Round } from './round/round'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Game path='/:gameCode'>
             <EnterNames path='/names' />
             <Lobby path='/lobby' />
+            <Round path='/round/:round/' />
           </Game>
         </Router>
       </UserProvider>
