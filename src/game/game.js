@@ -24,7 +24,11 @@ const GameStateNavigation = ({ children }) => {
         }
         break
       case GAME_STATE.PLAYING:
-        navigate(`/${game.id}/round/${game.round}`)
+        if (game.currentPlayer === userID) {
+          navigate(`/${game.id}/round/${game.round}/play`)
+        } else {
+          navigate(`/${game.id}/round/${game.round}`)
+        }
         break
       default:
         navigate('/')
