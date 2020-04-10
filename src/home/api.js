@@ -10,7 +10,7 @@ const initialGame = (gameID, userID) => ({
     },
   },
   names: [],
-  round: 1,
+  round: 0,
   state: GAME_STATE.LOBBY,
 })
 

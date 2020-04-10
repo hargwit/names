@@ -1,15 +1,15 @@
 import React from 'react'
-import { navigate } from '@reach/router'
 import { useGame } from '../game/game-provider'
 import { column, alignCenter } from '../layout/styles'
 import { Button } from 'react-bootstrap'
 import { useStartGame } from './api'
 
 import { Container } from '../layout/container'
+import { NEXT_ROUND_NAME } from '../constants'
 
 const styles = {
   button: {
-    width: '170px',
+    width: '200px',
     marginBottom: '1rem',
   },
 }
@@ -19,7 +19,7 @@ const Lobby = () => {
   const [startGame, starting] = useStartGame(game.id)
 
   const start = () => {
-    startGame().then(() => navigate(`/round/${game.round}`))
+    startGame(game.round + 1)
   }
 
   return (
@@ -45,7 +45,9 @@ const Lobby = () => {
         variant='primary'
         size='lg'
       >
-        {starting ? 'Starting...' : 'Start game'}
+        {starting
+          ? 'Starting...'
+          : `Start ${NEXT_ROUND_NAME[game.round]} round`}
       </Button>
     </Container>
   )

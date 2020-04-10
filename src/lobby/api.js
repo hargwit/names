@@ -5,21 +5,20 @@ import { GAME_STATE } from '../constants'
 const useStartGame = (id) => {
   const [starting, setStarting] = useState(false)
 
-  const startGame = () => {
+  const startGame = (nextRound) => {
     setStarting(true)
     return db
       .collection('games')
       .doc(id)
-      .set({
+      .update({
+        round: nextRound,
         state: GAME_STATE.PLAYING,
       })
       .then(() => {
         setStarting(false)
-        return
       })
       .catch((error) => {
         setStarting(false)
-        return error
       })
   }
 

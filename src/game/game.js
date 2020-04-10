@@ -23,6 +23,9 @@ const GameStateNavigation = ({ children }) => {
           navigate(`/${game.id}/names`)
         }
         break
+      case GAME_STATE.PLAYING:
+        navigate(`/${game.id}/round/${game.round}`)
+        break
       default:
         navigate('/')
     }
