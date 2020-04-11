@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import db from '../firebase'
+import { GAME_STATE } from '../constants'
 
 const gameRef = (id) => db.collection('games').doc(id)
 
@@ -12,7 +13,11 @@ const useJoinGame = () => {
       .runTransaction((transaction) => {
         return transaction.get(gameRef(id)).then((result) => {
           if (!result.exists) {
-            throw new Error('No game by this code')
+            throw new Error('No game by this code, please try another')
+          }
+          const game = result.data()
+          if (game.state === GAME_STATE.END_GAME) {
+            throw new Error('This game has ended, please try another')
           }
           const numPlayers = result.data().numPlayers + 1
           transaction.update(gameRef(id), { numPlayers })
@@ -20,11 +25,11 @@ const useJoinGame = () => {
       })
       .then(() => {
         setLoading(false)
-        return true
+        return id
       })
       .catch((err) => {
         setLoading(false)
-        return err
+        throw err
       })
   }
   return [joinGame, loading]

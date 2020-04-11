@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Alert } from 'react-bootstrap'
 
 import { column, alignCenter } from '../layout/styles'
 import { useJoinGame } from './api'
@@ -8,11 +8,16 @@ import { navigate } from '@reach/router'
 
 import { Container } from '../layout/container'
 
-import { Loading } from '../loading/loading'
+const styles = {
+  errorAlert: {
+    marginTop: '1rem',
+  },
+}
 
 const JoinGame = () => {
   const [gameCode, setGameCode] = React.useState('')
-  const [joinGame, loading] = useJoinGame()
+  const [joinGame, joining] = useJoinGame()
+  const [error, setError] = useState()
 
   const onChange = (event) => {
     setGameCode(event.target.value)
@@ -20,12 +25,12 @@ const JoinGame = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    joinGame(gameCode).then(() => navigate(`/${gameCode}`))
+    joinGame(gameCode)
+      .then((id) => navigate(`/${id}`))
+      .catch((err) => setError(err))
   }
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <Container>
       <h1>Join a game</h1>
       <div
@@ -44,9 +49,14 @@ const JoinGame = () => {
               placeholder='Enter game code'
             />
           </Form.Group>
-          <Button variant='primary' type='submit'>
-            Join game
+          <Button disabled={joining} variant='primary' type='submit'>
+            {joining ? 'Joining...' : 'Join game'}
           </Button>
+          {error && (
+            <Alert style={styles.errorAlert} variant='danger'>
+              {error.message}
+            </Alert>
+          )}
         </Form>
       </div>
     </Container>

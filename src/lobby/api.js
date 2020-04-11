@@ -25,4 +25,25 @@ const useStartGame = (id) => {
   return [startGame, starting]
 }
 
-export { useStartGame }
+const useEndGame = (id) => {
+  const [ending, setEnding] = useState(false)
+
+  const endGame = () => {
+    setEnding(true)
+    return db
+      .collection('games')
+      .doc(id)
+      .update({
+        state: GAME_STATE.END_GAME,
+      })
+      .then(() => {
+        setEnding(false)
+      })
+      .catch((error) => {
+        setEnding(false)
+      })
+  }
+  return [endGame, ending]
+}
+
+export { useStartGame, useEndGame }
