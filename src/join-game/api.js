@@ -4,7 +4,7 @@ import { GAME_STATE } from '../constants'
 
 const gameRef = (id) => db.collection('games').doc(id)
 
-const useJoinGame = () => {
+const useJoinGame = (userID) => {
   const [loading, setLoading] = useState(false)
 
   const joinGame = (id) => {
@@ -19,8 +19,11 @@ const useJoinGame = () => {
           if (game.state === GAME_STATE.END_GAME) {
             throw new Error('This game has ended, please try another')
           }
-          const numPlayers = result.data().numPlayers + 1
-          transaction.update(gameRef(id), { numPlayers })
+          if (!game.players[userID]) {
+            transaction.update(gameRef(id), {
+              players: { ...game.players, [userID]: { enteredNames: false } },
+            })
+          }
         })
       })
       .then(() => {

@@ -5,6 +5,7 @@ import { Form, Button, Alert } from 'react-bootstrap'
 import { column, alignCenter } from '../layout/styles'
 import { useJoinGame } from './api'
 import { navigate } from '@reach/router'
+import { useUserID } from '../user-context/user-provider'
 
 import { Container } from '../layout/container'
 
@@ -16,7 +17,8 @@ const styles = {
 
 const JoinGame = () => {
   const [gameCode, setGameCode] = React.useState('')
-  const [joinGame, joining] = useJoinGame()
+  const userID = useUserID()
+  const [joinGame, joining] = useJoinGame(userID)
   const [error, setError] = useState()
 
   const onChange = (event) => {
