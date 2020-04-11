@@ -13,6 +13,7 @@ const initialGame = (gameID, userID) => ({
   round: 0,
   state: GAME_STATE.LOBBY,
   currentPlayer: '',
+  createdAt: Date.now(),
 })
 
 const useCreateGame = () => {
