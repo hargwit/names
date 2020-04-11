@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useGame } from '../game/game-provider'
 import { Container } from '../layout/container'
 import { Button } from 'react-bootstrap'
@@ -34,6 +34,9 @@ const styles = {
 
 const Play = ({ round }) => {
   const game = useGame()
+  const gameNames = game.names
+    .filter((name) => name.lastRound !== round)
+    .map((name) => name.value)
   const {
     nextName,
     currentPass,
@@ -42,11 +45,7 @@ const Play = ({ round }) => {
     setNewName,
     passName,
     unPassName,
-  } = usePlay(
-    game.names
-      .filter((name) => name.lastRound !== round)
-      .map((name) => name.value),
-  )
+  } = usePlay(gameNames)
 
   useEffect(() => {
     setNewName()
@@ -63,6 +62,8 @@ const Play = ({ round }) => {
   function handleNext() {
     setNewName()
   }
+
+  const namesLeft = gameNames.length - completedNames.length
 
   return (
     <Container>
@@ -93,7 +94,7 @@ const Play = ({ round }) => {
             Next!
           </Button>
           <Button
-            disabled={!currentName}
+            disabled={!currentPass && namesLeft < 2}
             onClick={handlePass}
             style={styles.playButton}
             variant='warning'
