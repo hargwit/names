@@ -34,7 +34,8 @@ const GameStateNavigation = ({ children }) => {
 
   useEffect(() => {
     if (!game) {
-      doNavigate('/')
+      navigate('/')
+      return
     }
 
     switch (game.state) {
