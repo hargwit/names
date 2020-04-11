@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from 'react'
+import { useReducer } from 'react'
 
 const actionTypes = {
   newName: 'NEW_NAME',
