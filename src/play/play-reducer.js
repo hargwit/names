@@ -23,27 +23,35 @@ function playReducer(state, action) {
           nextName: '',
           completedNames: [...state.completedNames, state.currentName],
         }
-      }
-      return {
-        ...state,
-        currentName: chooseRandomName(
-          action.gameNames,
-          state.completedNames,
-          state.currentPass,
-        ),
-        completedNames: state.currentName
+      } else {
+        const nextCompletedNames = state.currentName
           ? [...state.completedNames, state.currentName]
-          : state.completedNames,
+          : state.completedNames
+        const nextName = chooseRandomName(
+          action.gameNames,
+          nextCompletedNames,
+          state.currentPass,
+        )
+
+        return {
+          ...state,
+          currentName: nextName ? nextName : state.currentPass,
+          completedNames: nextCompletedNames,
+          currentPass: nextName ? state.currentPass : '',
+        }
       }
     case actionTypes.pass:
       return {
         ...state,
         currentPass: state.currentName,
-        currentName: chooseRandomName(
-          action.gameNames,
-          state.completedNames,
-          state.currentName,
-        ),
+        currentName: state.nextName
+          ? state.nextName
+          : chooseRandomName(
+              action.gameNames,
+              state.completedNames,
+              state.currentName,
+            ),
+        nextName: '',
       }
     case actionTypes.unPass:
       return {

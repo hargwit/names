@@ -27,6 +27,9 @@ const styles = {
   button: {
     width: '200px',
   },
+  playInfo: {
+    width: '110px',
+  },
 }
 
 const Play = ({ round }) => {
@@ -57,10 +60,14 @@ const Play = ({ round }) => {
     }
   }
 
+  function handleNext() {
+    setNewName()
+  }
+
   return (
     <Container>
-      <h1>{currentName}</h1>
-      <div>
+      <h1>{currentName ? currentName : 'No more names'}</h1>
+      <div style={styles.playInfo}>
         {nextName ? (
           <p>
             Next name: <strong>{nextName}</strong>
@@ -76,10 +83,17 @@ const Play = ({ round }) => {
       </div>
       <div style={styles.buttons}>
         <div style={styles.playControls}>
-          <Button style={styles.playButton} variant='primary' size='lg'>
+          <Button
+            disabled={!currentName}
+            onClick={handleNext}
+            style={styles.playButton}
+            variant='primary'
+            size='lg'
+          >
             Next!
           </Button>
           <Button
+            disabled={!currentName}
             onClick={handlePass}
             style={styles.playButton}
             variant='warning'
