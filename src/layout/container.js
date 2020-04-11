@@ -2,8 +2,7 @@ import React from 'react'
 
 const styles = {
   outer: {
-    height: '100vh',
-    overflow: 'hidden',
+    height: '90vh',
   },
   inner: {
     height: '100%',
