@@ -3,6 +3,8 @@ import { useGame } from '../game/game-provider'
 import { Container } from '../layout/container'
 import { Button } from 'react-bootstrap'
 import { usePlay } from './play-reducer'
+import { useEndTurn } from './api'
+import { Loading } from '../loading/loading'
 
 const styles = {
   buttons: {
@@ -34,6 +36,7 @@ const styles = {
 
 const Play = ({ round }) => {
   const game = useGame()
+  const [endTurn, loading] = useEndTurn(game.id, round)
   const gameNames = game.names
     .filter((name) => name.lastRound !== round)
     .map((name) => name.value)
@@ -63,9 +66,15 @@ const Play = ({ round }) => {
     setNewName()
   }
 
+  function handleEndTurn() {
+    endTurn(completedNames)
+  }
+
   const namesLeft = gameNames.length - completedNames.length
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <Container>
       <h1>{currentName ? currentName : 'No more names'}</h1>
       <div style={styles.playInfo}>
@@ -103,7 +112,12 @@ const Play = ({ round }) => {
             {currentPass ? 'Unpass!' : 'Pass!'}
           </Button>
         </div>
-        <Button style={styles.button} variant='primary' size='lg'>
+        <Button
+          onClick={handleEndTurn}
+          style={styles.button}
+          variant='primary'
+          size='lg'
+        >
           End turn
         </Button>
       </div>
