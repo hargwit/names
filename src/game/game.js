@@ -33,6 +33,10 @@ const GameStateNavigation = ({ children }) => {
   }
 
   useEffect(() => {
+    if (!game) {
+      doNavigate('/')
+    }
+
     switch (game.state) {
       case GAME_STATE.LOBBY:
         if (game.players[userID].enteredNames) {
