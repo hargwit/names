@@ -4,7 +4,7 @@ import { Container } from '../layout/container'
 import { column, alignCenter } from '../layout/styles'
 import { Button } from 'react-bootstrap'
 import { useUserID } from '../user-context/user-provider'
-import { useTakeTurn } from './api'
+import { useTakeTurn, useEndRound } from './api'
 import { Loading } from '../loading/loading'
 
 const styles = {
@@ -17,11 +17,12 @@ const styles = {
 const Round = ({ round }) => {
   const game = useGame()
   const userID = useUserID()
-  const [takeTurn, loading] = useTakeTurn(userID)
+  const [takeTurn, loading] = useTakeTurn(game.id, userID)
+  const [endRound, ending] = useEndRound(game.id)
 
   const namesLeft = game.names.filter((name) => name.lastRound !== round).length
 
-  return loading ? (
+  return loading || ending ? (
     <Loading />
   ) : (
     <Container>
@@ -40,7 +41,12 @@ const Round = ({ round }) => {
         </p>
       </div>
       {namesLeft === 0 ? (
-        <Button style={styles.button} variant='primary' size='lg'>
+        <Button
+          onClick={endRound}
+          style={styles.button}
+          variant='primary'
+          size='lg'
+        >
           End round
         </Button>
       ) : (
@@ -49,7 +55,7 @@ const Round = ({ round }) => {
           style={styles.button}
           variant='primary'
           size='lg'
-          onClick={() => takeTurn(game.id)}
+          onClick={takeTurn}
         >
           Take my turn
         </Button>
