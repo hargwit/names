@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useGame } from '../game/game-provider'
 import { Container } from '../layout/container'
 import { Button } from 'react-bootstrap'
+import { usePlay } from './play-reducer'
 
 const styles = {
   buttons: {
@@ -30,49 +31,39 @@ const styles = {
 
 const Play = ({ round }) => {
   const game = useGame()
-
-  const [showPass, setShowPass] = useState('')
-  const [currentPass, setCurrentPass] = useState('')
-  const [currentName, setCurrentName] = useState('')
-  const [gotNames, setGotNames] = useState([])
+  const {
+    nextName,
+    currentPass,
+    currentName,
+    completedNames,
+    setNewName,
+    passName,
+    unPassName,
+  } = usePlay(
+    game.names
+      .filter((name) => name.lastRound !== round)
+      .map((name) => name.value),
+  )
 
   useEffect(() => {
-    const names = game.names
-      .filter((name) => name.lastRound !== round)
-      .map((name) => name.value)
-      .filter((name) => !gotNames.includes(name))
-      .filter((name) => name !== currentPass)
-    const index = Math.floor(Math.random() * Math.floor(names.length))
-    const newName = names[index]
-    setCurrentName(newName)
-  }, [game.names, gotNames, currentPass])
+    setNewName()
+  }, [])
 
-  const addGotName = () => {
-    if (showPass) {
-      setShowPass(false)
-      setCurrentPass('')
-      setGotNames([...gotNames, currentPass])
+  function handlePass() {
+    if (currentPass) {
+      unPassName()
     } else {
-      setGotNames([...gotNames, currentName])
-      setCurrentName('')
+      passName()
     }
-  }
-
-  const pass = (name) => {
-    setCurrentPass(name)
-  }
-
-  const unPass = () => {
-    setShowPass(true)
   }
 
   return (
     <Container>
-      <h1>{showPass ? currentPass : currentName}</h1>
+      <h1>{currentName}</h1>
       <div>
-        {showPass ? (
+        {nextName ? (
           <p>
-            Next word: <strong>{currentName || '-'}</strong>
+            Next name: <strong>{nextName}</strong>
           </p>
         ) : (
           <p>
@@ -80,26 +71,21 @@ const Play = ({ round }) => {
           </p>
         )}
         <p>
-          Score: <strong>{gotNames.length}</strong>
+          Score: <strong>{completedNames.length}</strong>
         </p>
       </div>
       <div style={styles.buttons}>
         <div style={styles.playControls}>
-          <Button
-            onClick={addGotName}
-            style={styles.playButton}
-            variant='primary'
-            size='lg'
-          >
+          <Button style={styles.playButton} variant='primary' size='lg'>
             Next!
           </Button>
           <Button
-            onClick={currentPass ? () => unPass() : () => pass(currentName)}
+            onClick={handlePass}
             style={styles.playButton}
             variant='warning'
             size='lg'
           >
-            {currentPass && !showPass ? 'Unpass!' : 'Pass!'}
+            {currentPass ? 'Unpass!' : 'Pass!'}
           </Button>
         </div>
         <Button style={styles.button} variant='primary' size='lg'>

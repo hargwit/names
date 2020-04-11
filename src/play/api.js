@@ -34,7 +34,7 @@ const useEndTurn = (gameCode, round) => {
     })
   }
 
-  return endTurn
+  return [endTurn, loading]
 }
 
 export { useEndTurn }
