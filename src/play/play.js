@@ -32,6 +32,9 @@ const styles = {
   playInfo: {
     width: '110px',
   },
+  name: {
+    textAlign: 'center',
+  },
 }
 
 const Play = ({ round }) => {
@@ -76,7 +79,7 @@ const Play = ({ round }) => {
     <Loading />
   ) : (
     <Container>
-      <h1>{currentName ? currentName : 'No more names'}</h1>
+      <h1 style={styles.name}>{currentName ? currentName : 'No more names'}</h1>
       <div style={styles.playInfo}>
         {nextName ? (
           <p>
