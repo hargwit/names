@@ -7,6 +7,9 @@ const styles = {
   },
   inner: {
     height: '100%',
+    maxWidth: '400px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
