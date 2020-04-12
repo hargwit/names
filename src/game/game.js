@@ -15,7 +15,9 @@ const Game = ({ gameCode, children }) => (
   <GameProvider gameCode={gameCode}>
     <GameStateNavigation>
       <>
-        <strong style={styles.gameCode}>{gameCode}</strong>
+        <div style={styles.gameCode}>
+          Game code: <strong>{gameCode}</strong>
+        </div>
         {children}
       </>
     </GameStateNavigation>
