@@ -17,6 +17,13 @@ const styles = {
     width: '170px',
     marginBottom: '1rem',
   },
+  title: {
+    textAlign: 'center',
+  },
+  hat: {
+    fontSize: '80px',
+    marginTop: '1rem',
+  },
 }
 
 const Home = () => {
@@ -31,7 +38,12 @@ const Home = () => {
     <Loading />
   ) : (
     <Container>
-      <h1>Names</h1>
+      <h1 style={styles.title}>
+        Names in a <br />
+        <span aria-label='Image of a top hat' role='img' style={styles.hat}>
+          🎩
+        </span>
+      </h1>
       <div
         style={{
           ...column,
