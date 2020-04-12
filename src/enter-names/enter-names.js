@@ -9,6 +9,12 @@ import { Container } from '../layout/container'
 import { Loading } from '../loading/loading'
 import { useUserID } from '../user-context/user-provider'
 
+const styles = {
+  button: {
+    marginBottom: '4px',
+  },
+}
+
 const EnterNames = () => {
   const userID = useUserID()
   const game = useGame()
@@ -92,7 +98,12 @@ const EnterNames = () => {
             />
           </Form.Group>
 
-          <Button variant='primary' type='submit' disabled={!disableButton}>
+          <Button
+            style={styles.button}
+            variant='primary'
+            type='submit'
+            disabled={!disableButton}
+          >
             Submit names
           </Button>
         </Form>
