@@ -49,6 +49,7 @@ const JoinGame = () => {
               onChange={onChange}
               type='text'
               placeholder='Enter game code'
+              autoComplete='off'
             />
           </Form.Group>
           <Button disabled={joining} variant='primary' type='submit'>
