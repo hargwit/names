@@ -187,9 +187,9 @@ const Play = ({ round }) => {
             <div>
               Your names:
               <ul>
-                {completedNames.map((name, index) => (
-                  <li key={name + index}>
-                    <strong>{name}</strong>
+                {completedNames.map((name) => (
+                  <li key={name.id}>
+                    <strong>{name.value}</strong>
                   </li>
                 ))}
               </ul>
