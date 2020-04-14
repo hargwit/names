@@ -5,6 +5,7 @@ import { Button, Modal } from 'react-bootstrap'
 import { usePlay } from './play-reducer'
 import { useEndTurn } from './api'
 import { Loading } from '../loading/loading'
+import { FaUndo } from 'react-icons/fa'
 
 const styles = {
   buttons: {
@@ -20,11 +21,21 @@ const styles = {
     flexDirection: 'row-reverse',
     alignItems: 'center',
     justifyContent: 'space-evenly',
+    marginBottom: '5rem',
+  },
+  nextControls: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  passControls: {
+    width: '170px',
+    display: 'flex',
+    flexDirection: 'row-reverse',
   },
   playButton: {
     height: '80px',
     width: '120px',
-    marginBottom: '5rem',
   },
   button: {
     width: '200px',
@@ -34,6 +45,16 @@ const styles = {
   },
   name: {
     textAlign: 'center',
+  },
+  undoButton: {
+    border: 'none',
+    borderRadius: '20px',
+    height: '40px',
+    width: '40px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: '10px',
   },
 }
 
@@ -51,6 +72,7 @@ const Play = ({ round }) => {
     setNewName,
     passName,
     unPassName,
+    undo,
   } = usePlay(gameNames)
   const [showModal, setShowModal] = useState(false)
 
@@ -109,24 +131,37 @@ const Play = ({ round }) => {
         </div>
         <div style={styles.buttons}>
           <div style={styles.playControls}>
-            <Button
-              disabled={!currentName}
-              onClick={handleNext}
-              style={styles.playButton}
-              variant='primary'
-              size='lg'
-            >
-              Next!
-            </Button>
-            <Button
-              disabled={!currentPass && namesLeft < 2}
-              onClick={handlePass}
-              style={styles.playButton}
-              variant='warning'
-              size='lg'
-            >
-              {currentPass ? 'Unpass!' : 'Pass!'}
-            </Button>
+            <div style={styles.nextControls}>
+              <Button
+                disabled={!currentName}
+                onClick={handleNext}
+                style={styles.playButton}
+                variant='primary'
+                size='lg'
+              >
+                Next!
+              </Button>
+              <Button
+                aria-label='Undo last name'
+                disabled={completedNames.length === 0}
+                style={styles.undoButton}
+                variant='outline-secondary'
+                onClick={undo}
+              >
+                <FaUndo />
+              </Button>
+            </div>
+            <div style={styles.passControls}>
+              <Button
+                disabled={!currentPass && namesLeft < 2}
+                onClick={handlePass}
+                style={styles.playButton}
+                variant='warning'
+                size='lg'
+              >
+                {currentPass ? 'Unpass!' : 'Pass!'}
+              </Button>
+            </div>
           </div>
           <Button
             onClick={handleOpenModal}

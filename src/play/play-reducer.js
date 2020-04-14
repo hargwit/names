@@ -4,6 +4,7 @@ const actionTypes = {
   newName: 'NEW_NAME',
   pass: 'PASS',
   unPass: 'UN_PASS',
+  undo: 'UNDO',
 }
 
 const initialState = {
@@ -60,6 +61,16 @@ function playReducer(state, action) {
         currentPass: '',
         nextName: state.currentName,
       }
+    case actionTypes.undo: {
+      return {
+        ...state,
+        currentName: state.completedNames[state.completedNames.length - 1],
+        completedNames: state.completedNames.slice(
+          0,
+          state.completedNames.length - 1,
+        ),
+      }
+    }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)
     }
@@ -72,12 +83,14 @@ const usePlay = (gameNames) => {
   const setNewName = () => dispatch({ gameNames, type: actionTypes.newName })
   const passName = () => dispatch({ gameNames, type: actionTypes.pass })
   const unPassName = () => dispatch({ type: actionTypes.unPass })
+  const undo = () => dispatch({ type: actionTypes.undo })
 
   return {
     ...state,
     setNewName,
     passName,
     unPassName,
+    undo,
   }
 }
 
