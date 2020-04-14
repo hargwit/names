@@ -139,7 +139,7 @@ const Play = ({ round }) => {
                 variant='primary'
                 size='lg'
               >
-                Next!
+                Next
               </Button>
               <Button
                 aria-label='Undo last name'
@@ -159,7 +159,7 @@ const Play = ({ round }) => {
                 variant='warning'
                 size='lg'
               >
-                {currentPass ? 'Unpass!' : 'Pass!'}
+                {currentPass ? 'Unpass' : 'Pass'}
               </Button>
             </div>
           </div>
