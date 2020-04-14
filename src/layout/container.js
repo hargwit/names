@@ -8,6 +8,7 @@ const styles = {
   inner: {
     height: '100%',
     maxWidth: '400px',
+    maxHeight: '800px',
     marginLeft: 'auto',
     marginRight: 'auto',
     display: 'flex',
