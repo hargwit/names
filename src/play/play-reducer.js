@@ -8,24 +8,24 @@ const actionTypes = {
 }
 
 const initialState = {
-  currentName: '',
-  currentPass: '',
+  currentName: {},
+  currentPass: {},
   completedNames: [],
-  nextName: '',
+  nextName: {},
 }
 
 function playReducer(state, action) {
   switch (action.type) {
     case actionTypes.newName:
-      if (state.nextName) {
+      if (state.nextName.value) {
         return {
           ...state,
           currentName: state.nextName,
-          nextName: '',
+          nextName: {},
           completedNames: [...state.completedNames, state.currentName],
         }
       } else {
-        const nextCompletedNames = state.currentName
+        const nextCompletedNames = state.currentName.id
           ? [...state.completedNames, state.currentName]
           : state.completedNames
         const nextName = chooseRandomName(
@@ -36,29 +36,29 @@ function playReducer(state, action) {
 
         return {
           ...state,
-          currentName: nextName ? nextName : state.currentPass,
+          currentName: nextName.id ? nextName : state.currentPass,
           completedNames: nextCompletedNames,
-          currentPass: nextName ? state.currentPass : '',
+          currentPass: nextName.id ? state.currentPass : {},
         }
       }
     case actionTypes.pass:
       return {
         ...state,
         currentPass: state.currentName,
-        currentName: state.nextName
+        currentName: state.nextName.id
           ? state.nextName
           : chooseRandomName(
               action.gameNames,
               state.completedNames,
               state.currentName,
             ),
-        nextName: '',
+        nextName: {},
       }
     case actionTypes.unPass:
       return {
         ...state,
         currentName: state.currentPass,
-        currentPass: '',
+        currentPass: {},
         nextName: state.currentName,
       }
     case actionTypes.undo: {
@@ -86,7 +86,10 @@ const usePlay = (gameNames) => {
   const undo = () => dispatch({ type: actionTypes.undo })
 
   return {
-    ...state,
+    currentPass: state.currentPass.value,
+    currentName: state.currentName.value,
+    nextName: state.nextName.value,
+    completedNames: state.completedNames.map((name) => name.value),
     setNewName,
     passName,
     unPassName,
@@ -96,11 +99,11 @@ const usePlay = (gameNames) => {
 
 function chooseRandomName(names, completedNames, currentPass) {
   const availableNames = names
-    .filter((name) => !completedNames.includes(name))
-    .filter((name) => name !== currentPass)
+    .filter((name) => !completedNames.find((n) => n.id === name.id))
+    .filter((name) => name.id !== currentPass.id)
 
   if (availableNames.length === 0) {
-    return ''
+    return {}
   }
 
   const index = Math.floor(Math.random() * Math.floor(availableNames.length))
