@@ -47,7 +47,7 @@ const EnterNames = () => {
           ...alignCenter,
         }}
       >
-        <Form onSubmit={handleSubmit}>
+        <Form autoComplete='off' onSubmit={handleSubmit}>
           <Form.Group controlId='formName1'>
             <Form.Label>Name 1</Form.Label>
             <Form.Control

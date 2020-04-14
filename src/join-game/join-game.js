@@ -41,7 +41,7 @@ const JoinGame = () => {
           ...alignCenter,
         }}
       >
-        <Form onSubmit={handleSubmit}>
+        <Form autoComplete='off' onSubmit={handleSubmit}>
           <Form.Group controlId='formGameCode'>
             <Form.Label>Game code</Form.Label>
             <Form.Control
