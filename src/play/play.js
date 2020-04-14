@@ -63,9 +63,7 @@ const makeStyles = (narrow) => ({
 const Play = ({ round }) => {
   const game = useGame()
   const [endTurn, loading] = useEndTurn(game.id, round)
-  const gameNames = game.names
-    .filter((name) => name.lastRound !== round)
-    .map((name) => name.value)
+  const gameNames = game.names.filter((name) => name.lastRound !== round)
   const {
     nextName,
     currentPass,
@@ -189,9 +187,9 @@ const Play = ({ round }) => {
             <div>
               Your names:
               <ul>
-                {completedNames.map((name, index) => (
-                  <li key={name + index}>
-                    <strong>{name}</strong>
+                {completedNames.map((name) => (
+                  <li key={name.id}>
+                    <strong>{name.value}</strong>
                   </li>
                 ))}
               </ul>

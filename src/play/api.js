@@ -17,7 +17,7 @@ const useEndTurn = (gameCode, round) => {
         const game = result.data()
 
         const newNames = game.names.map((name) => {
-          if (names.includes(name.value)) {
+          if (names.find((n) => n.id === name.id)) {
             return {
               ...name,
               lastRound: round,
