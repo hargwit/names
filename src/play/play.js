@@ -78,6 +78,7 @@ const Play = ({ round }) => {
 
   useEffect(() => {
     setNewName()
+    // eslint-disable-next-line
   }, [])
 
   function handlePass() {
