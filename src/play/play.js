@@ -6,45 +6,47 @@ import { usePlay } from './play-reducer'
 import { useEndTurn } from './api'
 import { Loading } from '../loading/loading'
 import { FaUndo } from 'react-icons/fa'
+import { useMediaQuery } from '../layout/hooks'
 
-const styles = {
+const makeStyles = (narrow) => ({
   buttons: {
-    width: '100%',
+    width: narrow ? '300px' : '370px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
   },
   playControls: {
-    width: '100%',
     display: 'flex',
     flexDirection: 'row-reverse',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
     marginBottom: '5rem',
   },
   nextControls: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    marginLeft: narrow ? '20px' : '30px',
   },
   passControls: {
-    width: '170px',
+    width: narrow ? '140px' : '170px',
     display: 'flex',
     flexDirection: 'row-reverse',
   },
   playButton: {
-    height: '80px',
-    width: '120px',
+    height: narrow ? '60px' : '80px',
+    width: narrow ? '90px' : '120px',
   },
-  button: {
-    width: '200px',
+  endGameButton: {
+    width: narrow ? '200px' : '270px',
   },
   playInfo: {
     width: '110px',
   },
   name: {
     textAlign: 'center',
+    width: narrow ? '300px' : '370px',
+    wordWrap: 'break-word',
   },
   undoButton: {
     border: 'none',
@@ -56,7 +58,7 @@ const styles = {
     justifyContent: 'center',
     marginLeft: '10px',
   },
-}
+})
 
 const Play = ({ round }) => {
   const game = useGame()
@@ -75,9 +77,12 @@ const Play = ({ round }) => {
     undo,
   } = usePlay(gameNames)
   const [showModal, setShowModal] = useState(false)
+  const narrow = useMediaQuery('(max-width: 370px)')
+  const styles = makeStyles(narrow)
 
   useEffect(() => {
     setNewName()
+    // eslint-disable-next-line
   }, [])
 
   function handlePass() {
@@ -165,7 +170,7 @@ const Play = ({ round }) => {
           </div>
           <Button
             onClick={handleOpenModal}
-            style={styles.button}
+            style={styles.endGameButton}
             variant='primary'
             size='lg'
           >

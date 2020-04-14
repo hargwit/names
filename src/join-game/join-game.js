@@ -27,7 +27,7 @@ const JoinGame = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    joinGame(gameCode)
+    joinGame(gameCode.toUpperCase())
       .then((id) => navigate(`/${id}`))
       .catch((err) => setError(err))
   }
