@@ -55,7 +55,7 @@ const EnterNames = () => {
               onChange={(event) => updateNames(0, event.target.value)}
               type='text'
               placeholder='Enter name 1'
-              autoComplete='off'
+              autoComplete='nope'
             />
           </Form.Group>
 
@@ -66,7 +66,7 @@ const EnterNames = () => {
               onChange={(event) => updateNames(1, event.target.value)}
               type='text'
               placeholder='Enter name 2'
-              autoComplete='off'
+              autoComplete='nope'
             />
           </Form.Group>
 
@@ -77,7 +77,7 @@ const EnterNames = () => {
               onChange={(event) => updateNames(2, event.target.value)}
               type='text'
               placeholder='Enter name 3'
-              autoComplete='off'
+              autoComplete='nope'
             />
           </Form.Group>
 
@@ -88,7 +88,7 @@ const EnterNames = () => {
               onChange={(event) => updateNames(3, event.target.value)}
               type='text'
               placeholder='Enter name 4'
-              autoComplete='off'
+              autoComplete='nope'
             />
           </Form.Group>
 
@@ -99,7 +99,7 @@ const EnterNames = () => {
               onChange={(event) => updateNames(4, event.target.value)}
               type='text'
               placeholder='Enter name 5'
-              autoComplete='off'
+              autoComplete='nope'
             />
           </Form.Group>
 
