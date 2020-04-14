@@ -48,8 +48,7 @@ const EnterNames = () => {
         }}
       >
         <Form autoComplete='nope' onSubmit={handleSubmit}>
-          <input type='hidden' value='prayer' />
-          <Form.Group controlId='formName1'>
+          <Form.Group controlId={`${game.id}-Name1`} >
             <Form.Label>Name 1</Form.Label>
             <Form.Control
               value={names[0]}
@@ -60,7 +59,7 @@ const EnterNames = () => {
             />
           </Form.Group>
 
-          <Form.Group controlId='formName2'>
+          <Form.Group controlId={`${game.id}-Name2`} >
             <Form.Label>Name 2</Form.Label>
             <Form.Control
               value={names[1]}
@@ -71,7 +70,7 @@ const EnterNames = () => {
             />
           </Form.Group>
 
-          <Form.Group controlId='formName3'>
+          <Form.Group controlId={`${game.id}-Name3`} >
             <Form.Label>Name 3</Form.Label>
             <Form.Control
               value={names[2]}
@@ -82,7 +81,7 @@ const EnterNames = () => {
             />
           </Form.Group>
 
-          <Form.Group controlId='formName4'>
+          <Form.Group controlId={`${game.id}-Name4`} >
             <Form.Label>Name 4</Form.Label>
             <Form.Control
               value={names[3]}
@@ -93,7 +92,7 @@ const EnterNames = () => {
             />
           </Form.Group>
 
-          <Form.Group controlId='formName5'>
+          <Form.Group controlId={`${game.id}-Name5`} >
             <Form.Label>Name 5</Form.Label>
             <Form.Control
               value={names[4]}
