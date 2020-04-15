@@ -47,59 +47,59 @@ const EnterNames = () => {
           ...alignCenter,
         }}
       >
-        <Form autoComplete='new-password' onSubmit={handleSubmit}>
-          <Form.Group controlId='formName1'>
+        <Form autoComplete='nope' onSubmit={handleSubmit}>
+          <Form.Group controlId={`${game.id}-Name1`} >
             <Form.Label>Name 1</Form.Label>
             <Form.Control
               value={names[0]}
               onChange={(event) => updateNames(0, event.target.value)}
               type='text'
               placeholder='Enter name 1'
-              autoComplete='new-password'
+              autoComplete='nope'
             />
           </Form.Group>
 
-          <Form.Group controlId='formName2'>
+          <Form.Group controlId={`${game.id}-Name2`} >
             <Form.Label>Name 2</Form.Label>
             <Form.Control
               value={names[1]}
               onChange={(event) => updateNames(1, event.target.value)}
               type='text'
               placeholder='Enter name 2'
-              autoComplete='new-password'
+              autoComplete='nope'
             />
           </Form.Group>
 
-          <Form.Group controlId='formName3'>
+          <Form.Group controlId={`${game.id}-Name3`} >
             <Form.Label>Name 3</Form.Label>
             <Form.Control
               value={names[2]}
               onChange={(event) => updateNames(2, event.target.value)}
               type='text'
               placeholder='Enter name 3'
-              autoComplete='new-password'
+              autoComplete='nope'
             />
           </Form.Group>
 
-          <Form.Group controlId='formName4'>
+          <Form.Group controlId={`${game.id}-Name4`} >
             <Form.Label>Name 4</Form.Label>
             <Form.Control
               value={names[3]}
               onChange={(event) => updateNames(3, event.target.value)}
               type='text'
               placeholder='Enter name 4'
-              autoComplete='new-password'
+              autoComplete='nope'
             />
           </Form.Group>
 
-          <Form.Group controlId='formName5'>
+          <Form.Group controlId={`${game.id}-Name5`} >
             <Form.Label>Name 5</Form.Label>
             <Form.Control
               value={names[4]}
               onChange={(event) => updateNames(4, event.target.value)}
               type='text'
               placeholder='Enter name 5'
-              autoComplete='new-password'
+              autoComplete='nope'
             />
           </Form.Group>
 
