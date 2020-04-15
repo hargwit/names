@@ -20,7 +20,7 @@ const useCreateGame = () => {
   const [loading, setLoading] = useState(false)
   const createGame = (userID) => {
     setLoading(true)
-    const gameID = createID()
+    const gameID = createID(4)
     return db
       .collection('games')
       .doc(gameID)
@@ -30,6 +30,13 @@ const useCreateGame = () => {
   return [createGame, loading]
 }
 
-const createID = () => Math.random().toString(36).substring(9).toUpperCase()
+const createID = (size) => {
+  const letters = []
+  for (let i = 0; i < size; i++) {
+    const char = Math.floor(Math.random() * 26)
+    letters.push(String.fromCharCode(65 + char))
+  }
+  return letters.join('')
+}
 
 export { useCreateGame }
