@@ -29,7 +29,7 @@ const useSubmitNames = (gameCode) => {
           const newNames = [
             ...game.names,
             ...names.map((name, i) => ({
-              id: latestID + i,
+              id: latestID + 1 + i,
               value: name,
               lastRound: 0,
             })),
