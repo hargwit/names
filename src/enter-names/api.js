@@ -24,7 +24,7 @@ const useSubmitNames = (gameCode) => {
               } else {
                 return prev
               }
-            }, 1)
+            }, 0)
 
           const newNames = [
             ...game.names,
