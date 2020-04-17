@@ -16,13 +16,15 @@ const useSubmitNames = (gameCode) => {
           }
           const game = result.data()
 
-          const latestID = game.names.reduce((prev, curr) => {
-            if (curr > prev) {
-              return curr
-            } else {
-              return prev
-            }
-          }, 1)
+          const latestID = game.names
+            .map((name) => name.id)
+            .reduce((prev, curr) => {
+              if (curr > prev) {
+                return curr
+              } else {
+                return prev
+              }
+            }, 1)
 
           const newNames = [
             ...game.names,
