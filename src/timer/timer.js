@@ -28,7 +28,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: '4px',
+    margin: '10px',
   },
 }
 
