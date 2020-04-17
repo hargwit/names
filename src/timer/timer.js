@@ -1,19 +1,34 @@
 import React, { useState } from 'react'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import { Button } from 'react-bootstrap'
+import { FaUndo, FaPause, FaPlay } from 'react-icons/fa'
 
 const styles = {
   timer: {
-    fontFamily: 'Montserrat',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
   text: {
-    color: '#aaa',
+    color: '#6c757d',
   },
   value: {
     fontSize: '40px',
+  },
+  buttons: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    border: 'none',
+    borderRadius: '20px',
+    height: '40px',
+    width: '40px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '4px',
   },
 }
 
@@ -55,17 +70,36 @@ function Timer() {
           setEnded(true)
         }}
       />
-      <div>
+      <div style={styles.buttons}>
         {playing ? (
-          <Button disabled={ended} onClick={stop}>
-            Pause
+          <Button
+            disabled={ended}
+            aria-label='pause timer'
+            variant='outline-secondary'
+            onClick={stop}
+            style={styles.button}
+          >
+            <FaPause />
           </Button>
         ) : (
-          <Button disabled={ended} onClick={start}>
-            Play
+          <Button
+            disabled={ended}
+            aria-label='play timer'
+            variant='outline-secondary'
+            onClick={start}
+            style={styles.button}
+          >
+            <FaPlay />
           </Button>
         )}
-        <Button onClick={reset}>Reset</Button>
+        <Button
+          aria-label='reset timer'
+          variant='outline-secondary'
+          onClick={reset}
+          style={styles.button}
+        >
+          <FaUndo />
+        </Button>
       </div>
     </div>
   )
