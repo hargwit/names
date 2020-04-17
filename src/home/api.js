@@ -20,7 +20,7 @@ const useCreateGame = () => {
   const [loading, setLoading] = useState(false)
   const createGame = (userID) => {
     setLoading(true)
-    const gameID = createID(4)
+    const gameID = getSafeID(4)
     return db
       .collection('games')
       .doc(gameID)
@@ -28,6 +28,14 @@ const useCreateGame = () => {
       .then(() => gameID)
   }
   return [createGame, loading]
+}
+
+const getSafeID = (size) => {
+  let id = createID(size)
+  while (profanities.includes(id.toLowerCase())) {
+    id = createID(size)
+  }
+  return id
 }
 
 const createID = (size) => {
@@ -38,5 +46,33 @@ const createID = (size) => {
   }
   return letters.join('')
 }
+
+const profanities = [
+  'arse',
+  'bint',
+  'butt',
+  'cock',
+  'cunt',
+  'crap',
+  'damn',
+  'dick',
+  'gays',
+  'gayz',
+  'fany',
+  'feck',
+  'fuck',
+  'jizz',
+  'niga',
+  'piss',
+  'rape',
+  'shag',
+  'shit',
+  'slag',
+  'slut',
+  'tart',
+  'tits',
+  'twat',
+  'wank',
+]
 
 export { useCreateGame }
