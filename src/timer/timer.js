@@ -34,7 +34,7 @@ const styles = {
 
 function Timer() {
   const [playing, setPlaying] = useState(false)
-  const [key, setKey] = useState(0)
+  const [key, setKey] = React.useReducer((c) => c + 1, 0)
   const [ended, setEnded] = useState(false)
 
   function start() {
@@ -48,7 +48,7 @@ function Timer() {
 
   function reset() {
     setPlaying(false)
-    setKey(key + 1)
+    setKey()
     setEnded(false)
   }
 
