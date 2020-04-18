@@ -53,7 +53,7 @@ const Round = ({ round }) => {
             variant='primary'
             size='lg'
           >
-            Show timer
+            Open timer
           </Button>
           {namesLeft === 0 ? (
             <Button
@@ -84,6 +84,11 @@ const Round = ({ round }) => {
         <Modal.Body>
           <Timer />
         </Modal.Body>
+        <Modal.Footer>
+          <Button variant='primary' onClick={handleHide}>
+            Close timer
+          </Button>
+        </Modal.Footer>
       </Modal>
     </>
   )
