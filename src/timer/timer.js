@@ -58,7 +58,7 @@ function Timer() {
         key={key}
         isPlaying={playing}
         durationSeconds={30}
-        colors={[['#004777', 0.33], ['#F7B801', 0.33], ['#A30000']]}
+        colors={[['#007bff', 0.33], ['#ffc107', 0.33], ['#dc3545']]}
         renderTime={(value) => (
           <div style={styles.timer}>
             <div style={styles.text}>Remaining</div>
