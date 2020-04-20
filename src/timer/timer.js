@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import { Button } from 'react-bootstrap'
 import { FaUndo, FaPause, FaPlay } from 'react-icons/fa'
+import { useAudio } from './audio'
 
 const styles = {
   timer: {
@@ -36,6 +37,7 @@ function Timer() {
   const [playing, setPlaying] = useState(false)
   const [key, setKey] = React.useReducer((c) => c + 1, 0)
   const [ended, setEnded] = useState(false)
+  const audio = useAudio()
 
   function start() {
     setPlaying(true)
@@ -50,6 +52,7 @@ function Timer() {
     setPlaying(false)
     setKey()
     setEnded(false)
+    audio.stop()
   }
 
   return (
@@ -68,6 +71,7 @@ function Timer() {
         )}
         onComplete={() => {
           setEnded(true)
+          audio.play()
         }}
       />
       <div style={styles.buttons}>
