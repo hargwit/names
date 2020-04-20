@@ -60,7 +60,7 @@ function Timer() {
       <CountdownCircleTimer
         key={key}
         isPlaying={playing}
-        durationSeconds={30}
+        durationSeconds={3}
         colors={[['#007bff', 0.33], ['#ffc107', 0.33], ['#dc3545']]}
         renderTime={(value) => (
           <div style={styles.timer}>
