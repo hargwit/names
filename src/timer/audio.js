@@ -6,7 +6,7 @@ const useAudio = () => {
       audio.play()
       setInterval(() => {
         stop()
-      }, 4000)
+      }, 4100)
     }
   }
 
