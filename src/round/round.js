@@ -47,14 +47,16 @@ const Round = ({ round }) => {
           </p>
         </CenteredColumn>
         <CenteredColumn>
-          <Button
-            onClick={handleShow}
-            style={styles.button}
-            variant='primary'
-            size='lg'
-          >
-            Open timer
-          </Button>
+          {namesLeft > 0 && (
+            <Button
+              onClick={handleShow}
+              style={styles.button}
+              variant='primary'
+              size='lg'
+            >
+              Open timer
+            </Button>
+          )}
           {namesLeft === 0 ? (
             <Button
               onClick={endRound}
