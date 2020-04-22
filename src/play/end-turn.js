@@ -4,7 +4,20 @@ import { Button, Modal } from 'react-bootstrap'
 const styles = {
   name: (removed) => ({
     textDecoration: removed ? 'line-through' : 'none',
+    color: removed ? '#dc3545' : 'black',
   }),
+  removeButton: {
+    border: 'none',
+    marginLeft: 'auto',
+  },
+  table: {
+    marginLeft: '2rem',
+    marginRight: '2rem',
+  },
+  row: {
+    display: 'flex',
+    alignItems: 'center',
+  },
 }
 
 const EndTurnModal = ({ show, handleClose, handleEndTurn, names }) => {
@@ -51,26 +64,33 @@ const EndTurnModal = ({ show, handleClose, handleEndTurn, names }) => {
         {confirmedNames.length > 0 && (
           <div>
             Your names:
-            <table>
+            <div style={styles.table}>
               {confirmedNames.map((name) => (
-                <tr key={name.id}>
-                  <td>
-                    <strong style={styles.name(name.removed)}>
-                      {name.value}
-                    </strong>
-                  </td>
-                  <td>
-                    {name.removed ? (
-                      <Button onClick={() => putBack(name.id)}>Put back</Button>
-                    ) : (
-                      <Button onClick={() => removeName(name.id)}>
-                        Remove
-                      </Button>
-                    )}
-                  </td>
-                </tr>
+                <div style={styles.row} key={name.id}>
+                  <li />
+                  <strong style={styles.name(name.removed)}>
+                    {name.value}
+                  </strong>
+                  {name.removed ? (
+                    <Button
+                      style={styles.removeButton}
+                      variant={'outline-success'}
+                      onClick={() => putBack(name.id)}
+                    >
+                      Put back
+                    </Button>
+                  ) : (
+                    <Button
+                      style={styles.removeButton}
+                      variant={'outline-danger'}
+                      onClick={() => removeName(name.id)}
+                    >
+                      Remove
+                    </Button>
+                  )}
+                </div>
               ))}
-            </table>
+            </div>
           </div>
         )}
       </Modal.Body>
