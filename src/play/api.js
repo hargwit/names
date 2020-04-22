@@ -6,7 +6,7 @@ const gameRef = (id) => db.collection('games').doc(id)
 const useEndTurn = (gameCode, round) => {
   const [loading, setLoading] = useState(false)
 
-  const endTurn = (names) => {
+  const endTurn = (nameIDs) => {
     setLoading(true)
     return db.runTransaction((transaction) => {
       return transaction.get(gameRef(gameCode)).then((result) => {
@@ -17,7 +17,7 @@ const useEndTurn = (gameCode, round) => {
         const game = result.data()
 
         const newNames = game.names.map((name) => {
-          if (names.find((n) => n.id === name.id)) {
+          if (nameIDs.find((id) => id === name.id)) {
             return {
               ...name,
               lastRound: round,

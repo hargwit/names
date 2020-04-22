@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useGame } from '../game/game-provider'
 import { Container } from '../layout/container'
-import { Button, Modal } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { usePlay } from './play-reducer'
 import { useEndTurn } from './api'
 import { Loading } from '../loading/loading'
 import { FaUndo } from 'react-icons/fa'
 import { useMediaQuery } from '../layout/hooks'
+import { EndTurnModal } from './end-turn'
 
 const makeStyles = (narrow) => ({
   buttons: {
@@ -95,9 +96,9 @@ const Play = ({ round }) => {
     setNewName()
   }
 
-  function handleEndTurn() {
+  function handleEndTurn(nameIDs) {
     handleCloseModal()
-    endTurn(completedNames)
+    endTurn(nameIDs)
   }
 
   function handleCloseModal() {
@@ -116,7 +117,7 @@ const Play = ({ round }) => {
     <>
       <Container>
         <h1 style={styles.name}>
-          {currentName ? currentName : 'No more names'}
+          {currentName.id ? currentName.value : 'No more names'}
         </h1>
         <div style={styles.playInfo}>
           {nextName ? (
@@ -136,13 +137,13 @@ const Play = ({ round }) => {
           <div style={styles.playControls}>
             <div style={styles.nextControls}>
               <Button
-                disabled={!currentName}
+                disabled={!currentName.id}
                 onClick={handleNext}
                 style={styles.playButton}
                 variant='primary'
                 size='lg'
               >
-                Next
+                Got it
               </Button>
               <Button
                 aria-label='Undo last name'
@@ -176,35 +177,13 @@ const Play = ({ round }) => {
           </Button>
         </div>
       </Container>
-      <Modal show={showModal} onHide={handleCloseModal} centered>
-        <Modal.Header>
-          <Modal.Title>Confirm your score</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          You scored <strong>{completedNames.length}</strong> name
-          {completedNames.length !== 1 && 's'}!
-          {completedNames.length > 0 && (
-            <div>
-              Your names:
-              <ul>
-                {completedNames.map((name) => (
-                  <li key={name.id}>
-                    <strong>{name.value}</strong>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant='secondary' onClick={handleCloseModal}>
-            Cancel
-          </Button>
-          <Button variant='primary' onClick={handleEndTurn}>
-            Confirm and end turn
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <EndTurnModal
+        show={showModal}
+        handleClose={handleCloseModal}
+        handleEndTurn={handleEndTurn}
+        names={completedNames}
+        finalName={currentName}
+      />
     </>
   )
 }

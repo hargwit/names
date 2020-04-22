@@ -48,6 +48,7 @@ const Round = ({ round }) => {
         </CenteredColumn>
         <CenteredColumn>
           <Button
+            disabled={namesLeft === 0}
             onClick={handleShow}
             style={styles.button}
             variant='primary'
