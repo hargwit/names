@@ -18,9 +18,21 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
   },
+  lastName: {
+    marginLeft: '2rem',
+    marginRight: '2rem',
+    display: 'flex',
+    alignItems: 'center',
+  },
 }
 
-const EndTurnModal = ({ show, handleClose, handleEndTurn, names }) => {
+const EndTurnModal = ({
+  show,
+  handleClose,
+  handleEndTurn,
+  names,
+  finalName,
+}) => {
   const [confirmedNames, setConfirmedNames] = useState([])
 
   useEffect(() => {
@@ -49,6 +61,11 @@ const EndTurnModal = ({ show, handleClose, handleEndTurn, names }) => {
           }
         : n,
     )
+    setConfirmedNames(newNames)
+  }
+
+  function addFinalName() {
+    const newNames = [...confirmedNames, { ...finalName, removed: false }]
     setConfirmedNames(newNames)
   }
 
@@ -90,6 +107,23 @@ const EndTurnModal = ({ show, handleClose, handleEndTurn, names }) => {
                   )}
                 </div>
               ))}
+            </div>
+          </div>
+        )}
+        {finalName.id && (
+          <div>
+            The last name shown was:
+            <div style={styles.lastName}>
+              <li />
+              <strong style={styles.name(false)}>{finalName.value}</strong>
+              <Button
+                disabled={confirmedNames.find((n) => n.id === finalName.id)}
+                style={styles.removeButton}
+                variant={'outline-success'}
+                onClick={addFinalName}
+              >
+                Add to names
+              </Button>
             </div>
           </div>
         )}

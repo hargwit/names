@@ -87,7 +87,7 @@ const usePlay = (gameNames) => {
 
   return {
     currentPass: state.currentPass.value,
-    currentName: state.currentName.value,
+    currentName: state.currentName,
     nextName: state.nextName.value,
     completedNames: state.completedNames,
     setNewName,

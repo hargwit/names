@@ -117,7 +117,7 @@ const Play = ({ round }) => {
     <>
       <Container>
         <h1 style={styles.name}>
-          {currentName ? currentName : 'No more names'}
+          {currentName.id ? currentName.value : 'No more names'}
         </h1>
         <div style={styles.playInfo}>
           {nextName ? (
@@ -137,7 +137,7 @@ const Play = ({ round }) => {
           <div style={styles.playControls}>
             <div style={styles.nextControls}>
               <Button
-                disabled={!currentName}
+                disabled={!currentName.id}
                 onClick={handleNext}
                 style={styles.playButton}
                 variant='primary'
@@ -182,6 +182,7 @@ const Play = ({ round }) => {
         handleClose={handleCloseModal}
         handleEndTurn={handleEndTurn}
         names={completedNames}
+        finalName={currentName}
       />
     </>
   )
