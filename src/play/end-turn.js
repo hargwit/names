@@ -17,6 +17,7 @@ const styles = {
   row: {
     display: 'flex',
     alignItems: 'center',
+    marginBottom:'4px'
   },
   lastName: {
     marginLeft: '2rem',
@@ -110,18 +111,17 @@ const EndTurnModal = ({
             </div>
           </div>
         )}
-        {finalName.id && (
+        {finalName.id && !confirmedNames.find((n) => n.id === finalName.id) && (
           <div>
             The last name shown was:
             <div style={styles.lastName}>
               <li />
               <strong style={styles.name(false)}>{finalName.value}</strong>
               <Button
-                disabled={confirmedNames.find((n) => n.id === finalName.id)}
                 style={styles.removeButton}
                 variant={'outline-success'}
                 onClick={addFinalName}
-              >
+               >
                 Add to names
               </Button>
             </div>
