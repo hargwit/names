@@ -122,7 +122,7 @@ const EndTurnModal = ({
                 variant={'outline-success'}
                 onClick={addFinalName}
                >
-                Add to names
+                Add
               </Button>
             </div>
           </div>
