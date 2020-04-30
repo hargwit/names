@@ -9,22 +9,25 @@ import { Lobby } from './lobby/lobby'
 import { UserProvider } from './user-context/user-provider'
 import { Round } from './round/round'
 import { Play } from './play/play'
+import ErrorBoundary from './error-boundary'
 
 function App() {
   return (
     <div className='App'>
-      <UserProvider>
-        <Router>
-          <Home path='/' />
-          <JoinGame path='/join' />
-          <Game path='/:gameCode'>
-            <EnterNames path='/names' />
-            <Lobby path='/lobby' />
-            <Round path='/round/:round/' />
-            <Play path='/round/:round/play' />
-          </Game>
-        </Router>
-      </UserProvider>
+      <ErrorBoundary>
+        <UserProvider>
+          <Router>
+            <Home path='/' />
+            <JoinGame path='/join' />
+            <Game path='/:gameCode'>
+              <EnterNames path='/names' />
+              <Lobby path='/lobby' />
+              <Round path='/round/:round/' />
+              <Play path='/round/:round/play' />
+            </Game>
+          </Router>
+        </UserProvider>
+      </ErrorBoundary>
     </div>
   )
 }
