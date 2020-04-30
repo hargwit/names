@@ -61,6 +61,8 @@ const profanities = [
   'fany',
   'feck',
   'fuck',
+  'fukc',
+  'fukk',
   'jizz',
   'niga',
   'piss',
