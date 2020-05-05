@@ -7,11 +7,23 @@ import { useUserID } from '../user-context/user-provider'
 import { useTakeTurn, useEndRound } from './api'
 import { Loading } from '../loading/loading'
 import { Timer } from '../timer/timer'
+import { BsInfo } from 'react-icons/bs'
 
 const styles = {
   button: {
     width: '200px',
     marginBottom: '1rem',
+  },
+  description: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    border: 'none',
+    paddingLeft: '20px',
+  },
+  infoIcon: {
+    marginLeft: '4px',
+    marginTop: '2px',
   },
 }
 
@@ -37,7 +49,13 @@ const Round = ({ round }) => {
   ) : (
     <>
       <Container>
-        <h1>Round {round}</h1>
+        <CenteredColumn>
+          <h1>Round {round}</h1>
+          <Button variant='outline-secondary' style={styles.description}>
+            {roundMapping[round]}
+            <BsInfo style={styles.infoIcon} />
+          </Button>
+        </CenteredColumn>
         <CenteredColumn>
           <p>
             Total names: <strong>{game.names.length}</strong>
@@ -93,6 +111,12 @@ const Round = ({ round }) => {
       </Modal>
     </>
   )
+}
+
+const roundMapping = {
+  1: 'Describe',
+  2: 'One word',
+  3: 'Act it out',
 }
 
 export { Round }
