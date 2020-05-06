@@ -8,22 +8,12 @@ import { useTakeTurn, useEndRound } from './api'
 import { Loading } from '../loading/loading'
 import { Timer } from '../timer/timer'
 import { BsInfo } from 'react-icons/bs'
+import { RulesModal } from './rulesModal'
 
 const styles = {
   button: {
     width: '200px',
     marginBottom: '1rem',
-  },
-  description: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    border: 'none',
-    paddingLeft: '20px',
-  },
-  infoIcon: {
-    marginLeft: '4px',
-    marginTop: '2px',
   },
 }
 
@@ -51,10 +41,7 @@ const Round = ({ round }) => {
       <Container>
         <CenteredColumn>
           <h1>Round {round}</h1>
-          <Button variant='outline-secondary' style={styles.description}>
-            {roundMapping[round]}
-            <BsInfo style={styles.infoIcon} />
-          </Button>
+          <RulesModal round={round} />
         </CenteredColumn>
         <CenteredColumn>
           <p>
