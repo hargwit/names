@@ -7,7 +7,6 @@ import { useUserID } from '../user-context/user-provider'
 import { useTakeTurn, useEndRound } from './api'
 import { Loading } from '../loading/loading'
 import { Timer } from '../timer/timer'
-import { BsInfo } from 'react-icons/bs'
 import { RulesModal } from './rulesModal'
 
 const styles = {
@@ -98,12 +97,6 @@ const Round = ({ round }) => {
       </Modal>
     </>
   )
-}
-
-const roundMapping = {
-  1: 'Describe',
-  2: 'One word',
-  3: 'Act it out',
 }
 
 export { Round }
