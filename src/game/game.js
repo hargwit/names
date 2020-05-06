@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { GameProvider, useGameListener } from './game-provider'
+import { GameProvider, useGame } from './game-provider'
 import { GAME_STATE } from '../constants'
 import { navigate } from '@reach/router'
 import { useUserID } from '../user-context/user-provider'
@@ -25,7 +25,7 @@ const Game = ({ gameCode, children }) => (
 )
 
 const GameStateNavigation = ({ children }) => {
-  const game = useGameListener()
+  const game = useGame()
   const userID = useUserID()
   const [navigating, setNavigating] = useState(true)
 

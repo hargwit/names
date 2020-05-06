@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useGameListener } from '../game/game-provider'
+import { useGame } from '../game/game-provider'
 import { Container } from '../layout/container'
 import { Button } from 'react-bootstrap'
 import { usePlay } from './play-reducer'
@@ -62,7 +62,7 @@ const makeStyles = (narrow) => ({
 })
 
 const Play = ({ round }) => {
-  const game = useGameListener()
+  const game = useGame()
   const [endTurn, loading] = useEndTurn(game.id, round)
   const gameNames = game.names.filter((name) => name.lastRound !== round)
   const {

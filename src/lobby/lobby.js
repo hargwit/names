@@ -1,5 +1,5 @@
 import React from 'react'
-import { useGameListener } from '../game/game-provider'
+import { useGame } from '../game/game-provider'
 import { column, alignCenter } from '../layout/styles'
 import { Button } from 'react-bootstrap'
 import { useStartGame, useEndGame } from './api'
@@ -15,7 +15,7 @@ const styles = {
 }
 
 const Lobby = () => {
-  const game = useGameListener()
+  const game = useGame()
   const [startGame, starting] = useStartGame(game.id)
   const [endGame, ending] = useEndGame(game.id)
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useGameListener } from '../game/game-provider'
+import { useGame } from '../game/game-provider'
 import { Container } from '../layout/container'
 import { CenteredColumn } from '../layout/centered-column'
 import { Button, Modal } from 'react-bootstrap'
@@ -17,7 +17,7 @@ const styles = {
 }
 
 const Round = ({ round }) => {
-  const game = useGameListener()
+  const game = useGame()
   const userID = useUserID()
   const [takeTurn, loading] = useTakeTurn(game.id, userID)
   const [endRound, ending] = useEndRound(game.id)
