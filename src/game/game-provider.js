@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+} from 'react'
 import db from '../firebase'
 
 import { Loading } from '../loading/loading'
@@ -27,8 +33,31 @@ const GameProvider = ({ gameCode, children }) => {
 }
 
 const useGame = () => {
-  const game = useContext(GameContext)
+  const value = useContext(GameContext)
+
+  if (!value) {
+    throw new Error('useGame must be used within a GameProvider')
+  }
+
+  return value
+}
+
+const useGameListener = () => {
+  const value = useGame()
+  const [game, setGame] = useState(value)
+  const mounted = useRef(true)
+
+  useEffect(() => {
+    if (mounted.current) {
+      setGame(value)
+    }
+
+    return () => {
+      mounted.current = false
+    }
+  }, [value, setGame])
+
   return game
 }
 
-export { GameProvider, useGame }
+export { GameProvider, useGameListener }
