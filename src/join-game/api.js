@@ -13,11 +13,11 @@ const useJoinGame = (userID) => {
       .runTransaction((transaction) => {
         return transaction.get(gameRef(id)).then((result) => {
           if (!result.exists) {
-            throw new Error('No game by this code, please try another')
+            throw new Error(`No game by code ${id}, please try another`)
           }
           const game = result.data()
           if (game.state === GAME_STATE.END_GAME) {
-            throw new Error('This game has ended, please try another')
+            throw new Error(`The game ${id} has ended, please try another`)
           }
           if (!game.players[userID]) {
             transaction.update(gameRef(id), {

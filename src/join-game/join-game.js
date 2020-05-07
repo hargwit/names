@@ -3,11 +3,10 @@ import React, { useState } from 'react'
 import { Form, Button, Alert } from 'react-bootstrap'
 
 import { column, alignCenter } from '../layout/styles'
-import { useJoinGame } from './api'
 import { navigate } from '@reach/router'
-import { useUserID } from '../user-context/user-provider'
 
 import { Container } from '../layout/container'
+import { useError } from '../error/error-provider'
 
 const styles = {
   errorAlert: {
@@ -16,10 +15,8 @@ const styles = {
 }
 
 const JoinGame = () => {
-  const [gameCode, setGameCode] = React.useState('')
-  const userID = useUserID()
-  const [joinGame, joining] = useJoinGame(userID)
-  const [error, setError] = useState()
+  const [gameCode, setGameCode] = useState('')
+  const { error } = useError({ clear: true })
 
   const onChange = (event) => {
     setGameCode(event.target.value)
@@ -27,9 +24,7 @@ const JoinGame = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    joinGame(gameCode.toUpperCase())
-      .then((id) => navigate(`/${id}`))
-      .catch((err) => setError(err))
+    navigate(`/join/${gameCode}`)
   }
 
   return (
@@ -52,8 +47,8 @@ const JoinGame = () => {
               autoComplete='off'
             />
           </Form.Group>
-          <Button disabled={joining} variant='primary' type='submit'>
-            {joining ? 'Joining...' : 'Join game'}
+          <Button variant='primary' type='submit'>
+            Join game
           </Button>
           {error && (
             <Alert style={styles.errorAlert} variant='danger'>
