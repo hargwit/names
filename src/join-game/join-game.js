@@ -47,7 +47,11 @@ const JoinGame = () => {
               autoComplete='off'
             />
           </Form.Group>
-          <Button variant='primary' type='submit'>
+          <Button
+            disabled={gameCode.length !== 4}
+            variant='primary'
+            type='submit'
+          >
             Join game
           </Button>
           {error && (
