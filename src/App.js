@@ -12,6 +12,7 @@ import { Play } from './play/play'
 import ErrorBoundary from './error/error-boundary'
 import { JoinLink } from './join-game/join-link'
 import { ErrorProvider } from './error/error-provider'
+import { GameRules } from './game-rules/game-rules'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <ErrorBoundary>
         <ErrorProvider>
           <UserProvider>
+            <GameRules />
             <Router>
               <Home path='/' />
               <JoinGame path='/join' />

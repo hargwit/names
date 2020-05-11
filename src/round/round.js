@@ -7,13 +7,21 @@ import { useUserID } from '../user-context/user-provider'
 import { useTakeTurn, useEndRound } from './api'
 import { Loading } from '../loading/loading'
 import { Timer } from '../timer/timer'
-import { RulesModal } from './rulesModal'
 
 const styles = {
   button: {
     width: '200px',
     marginBottom: '1rem',
   },
+  subHeading: {
+    color: '#6c757d',
+  },
+}
+
+const roundNames = {
+  1: 'Describe',
+  2: 'One word',
+  3: 'Act it out',
 }
 
 const Round = ({ round }) => {
@@ -40,7 +48,7 @@ const Round = ({ round }) => {
       <Container>
         <CenteredColumn>
           <h1>Round {round}</h1>
-          <RulesModal round={round} />
+          <h3 style={styles.subHeading}>{roundNames[round]}</h3>
         </CenteredColumn>
         <CenteredColumn>
           <p>
