@@ -2,7 +2,7 @@ import React from 'react'
 
 const styles = {
   outer: {
-    height: '95vh',
+    height: '90vh',
     minHeight: '520px',
   },
   inner: {

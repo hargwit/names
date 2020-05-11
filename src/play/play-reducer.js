@@ -1,4 +1,5 @@
 import { useReducer } from 'react'
+import createReducer from '../createReducer'
 
 const actionTypes = {
   newName: 'NEW_NAME',
@@ -7,78 +8,79 @@ const actionTypes = {
   undo: 'UNDO',
 }
 
-const initialState = {
+export const initialState = {
   currentName: {},
   currentPass: {},
   completedNames: [],
   nextName: {},
 }
 
-function playReducer(state, action) {
-  switch (action.type) {
-    case actionTypes.newName:
-      if (state.nextName.value) {
-        return {
-          ...state,
-          currentName: state.nextName,
-          nextName: {},
-          completedNames: [...state.completedNames, state.currentName],
-        }
-      } else {
-        const nextCompletedNames = state.currentName.id
-          ? [...state.completedNames, state.currentName]
-          : state.completedNames
-        const nextName = chooseRandomName(
-          action.gameNames,
-          nextCompletedNames,
-          state.currentPass,
-        )
+export function newName(state, { gameNames }) {
+  if (state.nextName.value) {
+    return {
+      ...state,
+      currentName: state.nextName,
+      nextName: {},
+      completedNames: [...state.completedNames, state.currentName],
+    }
+  }
+  const nextCompletedNames = state.currentName.id
+    ? [...state.completedNames, state.currentName]
+    : state.completedNames
+  const nextName = chooseRandomName(
+    gameNames,
+    nextCompletedNames,
+    state.currentPass,
+  )
 
-        return {
-          ...state,
-          currentName: nextName.id ? nextName : state.currentPass,
-          completedNames: nextCompletedNames,
-          currentPass: nextName.id ? state.currentPass : {},
-        }
-      }
-    case actionTypes.pass:
-      return {
-        ...state,
-        currentPass: state.currentName,
-        currentName: state.nextName.id
-          ? state.nextName
-          : chooseRandomName(
-              action.gameNames,
-              state.completedNames,
-              state.currentName,
-            ),
-        nextName: {},
-      }
-    case actionTypes.unPass:
-      return {
-        ...state,
-        currentName: state.currentPass,
-        currentPass: {},
-        nextName: state.currentName,
-      }
-    case actionTypes.undo: {
-      return {
-        ...state,
-        currentName: state.completedNames[state.completedNames.length - 1],
-        completedNames: state.completedNames.slice(
-          0,
-          state.completedNames.length - 1,
-        ),
-      }
-    }
-    default: {
-      throw new Error(`Unhandled action type: ${action.type}`)
-    }
+  return {
+    ...state,
+    currentName: nextName.id ? nextName : state.currentPass,
+    completedNames: nextCompletedNames,
+    currentPass: nextName.id ? state.currentPass : {},
   }
 }
 
+export function pass(state, { gameNames }) {
+  return {
+    ...state,
+    currentPass: state.currentName,
+    currentName: state.nextName.id
+      ? state.nextName
+      : chooseRandomName(gameNames, state.completedNames, state.currentName),
+    nextName: {},
+  }
+}
+
+export function unPass(state) {
+  return {
+    ...state,
+    currentName: state.currentPass,
+    currentPass: {},
+    nextName: state.currentName,
+  }
+}
+
+export function undo(state) {
+  return {
+    ...state,
+    currentName: state.completedNames[state.completedNames.length - 1],
+    completedNames: state.completedNames.slice(
+      0,
+      state.completedNames.length - 1,
+    ),
+  }
+}
+
+const reducer = createReducer({
+  [actionTypes.newName]: newName,
+  [actionTypes.pass]: pass,
+  [actionTypes.unPass]: unPass,
+  [actionTypes.undo]: undo,
+})
+
 const usePlay = (gameNames) => {
-  const [state, dispatch] = useReducer(playReducer, initialState)
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   const setNewName = () => dispatch({ gameNames, type: actionTypes.newName })
   const passName = () => dispatch({ gameNames, type: actionTypes.pass })

@@ -13,6 +13,15 @@ const styles = {
     width: '200px',
     marginBottom: '1rem',
   },
+  subHeading: {
+    color: '#6c757d',
+  },
+}
+
+const roundNames = {
+  1: 'Describe',
+  2: 'One word',
+  3: 'Act it out',
 }
 
 const Round = ({ round }) => {
@@ -37,7 +46,10 @@ const Round = ({ round }) => {
   ) : (
     <>
       <Container>
-        <h1>Round {round}</h1>
+        <CenteredColumn>
+          <h1>Round {round}</h1>
+          <h3 style={styles.subHeading}>{roundNames[round]}</h3>
+        </CenteredColumn>
         <CenteredColumn>
           <p>
             Total names: <strong>{game.names.length}</strong>

@@ -20,14 +20,29 @@ const useCreateGame = () => {
   const [loading, setLoading] = useState(false)
   const createGame = (userID) => {
     setLoading(true)
-    const gameID = getSafeID(4)
-    return db
-      .collection('games')
-      .doc(gameID)
-      .set(initialGame(gameID, userID))
-      .then(() => gameID)
+    return createUniqueID(4).then((gameID) => {
+      return db
+        .collection('games')
+        .doc(gameID)
+        .set(initialGame(gameID, userID))
+        .then(() => gameID)
+    })
   }
   return [createGame, loading]
+}
+
+function createUniqueID(size) {
+  return db
+    .collection('games')
+    .get()
+    .then((querySnapshot) => {
+      const ids = querySnapshot.docs.map((doc) => doc.id)
+      let gameID = getSafeID(size)
+      while (ids.includes(gameID)) {
+        gameID = getSafeID(size)
+      }
+      return gameID
+    })
 }
 
 const getSafeID = (size) => {
