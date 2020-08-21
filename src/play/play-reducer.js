@@ -1,5 +1,5 @@
 import { useReducer } from 'react'
-import createReducer from '../createReducer'
+import createReducer from 'vanilla-create-reducer'
 
 const actionTypes = {
   newName: 'NEW_NAME',
