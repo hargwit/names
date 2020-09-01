@@ -3,7 +3,7 @@ import { useGame } from '../game/game-provider'
 
 import { column, alignCenter } from '../layout/styles'
 import { Form, Button } from 'react-bootstrap'
-import { useSubmitNames } from '../enter-names/api'
+import { useSubmitNames } from '../api/enterNames'
 
 import { Container } from '../layout/container'
 import { Loading } from '../loading/loading'

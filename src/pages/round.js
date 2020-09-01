@@ -4,7 +4,7 @@ import { Container } from '../layout/container'
 import { CenteredColumn } from '../layout/centered-column'
 import { Button, Modal } from 'react-bootstrap'
 import { useUserID } from '../user-context/user-provider'
-import { useTakeTurn, useEndRound } from '../round/api'
+import { useTakeTurn, useEndRound } from '../api/takeTurn'
 import { Loading } from '../loading/loading'
 import { Timer } from '../timer/timer'
 

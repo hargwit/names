@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useGame } from '../game/game-provider'
 import { Container } from '../layout/container'
 import { Button } from 'react-bootstrap'
-import { usePlay } from './play-reducer'
-import { useEndTurn } from './api'
+import { usePlay } from '../play/play-reducer'
+import { useEndTurn } from '../api/endTurn'
 import { Loading } from '../loading/loading'
 import { FaUndo } from 'react-icons/fa'
 import { useMediaQuery } from '../layout/hooks'
-import { EndTurnModal } from './end-turn'
+import { EndTurnModal } from '../play/end-turn'
 
 const makeStyles = (narrow) => ({
   buttons: {

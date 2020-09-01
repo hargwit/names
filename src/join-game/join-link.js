@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { useJoinGame } from './api'
+import { useJoinGame } from '../api/joinGame'
 import { navigate } from '@reach/router'
 import { useUserID } from '../user-context/user-provider'
 
