@@ -2,7 +2,7 @@ import React from 'react'
 import { useGame } from '../game/game-provider'
 import { column, alignCenter } from '../layout/styles'
 import { Button } from 'react-bootstrap'
-import { useStartGame, useEndGame } from './api'
+import { useStartGame, useEndGame } from '../lobby/api'
 
 import { Container } from '../layout/container'
 import { NEXT_ROUND_NAME } from '../constants'
