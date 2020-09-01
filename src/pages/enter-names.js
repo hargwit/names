@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { useGame } from '../game/game-provider'
+import { useGame } from '../components/game/game-provider'
 
 import { column, alignCenter } from '../layout/styles'
 import { Form, Button } from 'react-bootstrap'
-import { useSubmitNames } from '../api/enterNames'
+import { useSubmitNames } from '../api/submit-names'
 
 import { Container } from '../layout/container'
 import { Loading } from '../loading/loading'

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useGame } from '../game/game-provider'
+import { useGame } from '../components/game/game-provider'
 import { Container } from '../layout/container'
 import { Button } from 'react-bootstrap'
-import { usePlay } from '../play/play-reducer'
-import { useEndTurn } from '../api/endTurn'
+import { usePlay } from '../components/play/play-reducer'
+import { useEndTurn } from '../api/turn'
 import { Loading } from '../loading/loading'
 import { FaUndo } from 'react-icons/fa'
 import { useMediaQuery } from '../layout/hooks'
-import { EndTurnModal } from '../play/end-turn'
+import { EndTurnModal } from '../components/play/end-turn-modal'
 
 const makeStyles = (narrow) => ({
   buttons: {

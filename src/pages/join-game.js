@@ -6,7 +6,7 @@ import { column, alignCenter } from '../layout/styles'
 import { navigate } from '@reach/router'
 
 import { Container } from '../layout/container'
-import { useError } from '../error/error-provider'
+import { useError } from '../components/error/error-provider'
 
 const styles = {
   errorAlert: {

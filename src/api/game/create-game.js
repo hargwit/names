@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import db from '../firebase'
-import { GAME_STATE } from '../constants'
+import db from '../../firebase'
+import { GAME_STATE } from '../../constants'
 
 const initialGame = (gameID, userID) => ({
   id: gameID,

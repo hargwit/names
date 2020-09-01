@@ -1,5 +1,5 @@
 import React from 'react'
-import { useGame } from '../game/game-provider'
+import { useGame } from '../components/game/game-provider'
 import { column, alignCenter } from '../layout/styles'
 import { Button } from 'react-bootstrap'
 import { useStartGame, useEndGame } from '../api/startGame'

@@ -3,6 +3,24 @@ import db from '../firebase'
 
 const gameRef = (id) => db.collection('games').doc(id)
 
+const useTakeTurn = (gameCode, userID) => {
+  const [loading, setLoading] = useState(false)
+
+  const takeTurn = () => {
+    setLoading(true)
+    return db
+      .collection('games')
+      .doc(gameCode)
+      .update({
+        currentPlayer: userID,
+      })
+      .then(() => setLoading(false))
+      .catch(() => setLoading(false))
+  }
+
+  return [takeTurn, loading]
+}
+
 const useEndTurn = (gameCode, round) => {
   const [loading, setLoading] = useState(false)
 
@@ -37,4 +55,4 @@ const useEndTurn = (gameCode, round) => {
   return [endTurn, loading]
 }
 
-export { useEndTurn }
+export { useEndTurn, useTakeTurn }

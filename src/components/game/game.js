@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { GameProvider, useGame } from './game-provider'
-import { GAME_STATE } from '../constants'
+import { GAME_STATE } from '../../constants'
 import { navigate, Location } from '@reach/router'
-import { useUserID } from '../user-context/user-provider'
+import { useUserID } from '../../user-context/user-provider'
 import { Loading } from '../loading/loading'
 import { Button, Modal, InputGroup, FormControl } from 'react-bootstrap'
 

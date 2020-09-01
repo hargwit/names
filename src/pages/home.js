@@ -3,7 +3,7 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import { navigate } from '@reach/router'
 
-import { useCreateGame } from '../api/createGame'
+import { useCreateGame } from '../api/game/create-game'
 
 import { column, alignCenter } from '../layout/styles'
 

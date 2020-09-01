@@ -17,7 +17,7 @@ const useStartGame = (id) => {
       .then(() => {
         setStarting(false)
       })
-      .catch((error) => {
+      .catch(() => {
         setStarting(false)
       })
   }
@@ -39,7 +39,7 @@ const useEndGame = (id) => {
       .then(() => {
         setEnding(false)
       })
-      .catch((error) => {
+      .catch(() => {
         setEnding(false)
       })
   }
