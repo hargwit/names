@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react'
 
-import { Loading } from '../loading/loading'
+import { Loading } from '../loading'
 import { login } from '../api/auth'
 
 const UserContext = createContext()

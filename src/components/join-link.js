@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 
 import { useJoinGame } from '../api/joinGame'
 import { navigate } from '@reach/router'
-import { useUserID } from '../user-context/user-provider'
+import { useUserID } from './user-context/user-provider'
 
-import { Loading } from '../loading/loading'
-import { useError } from '../error/error-provider'
+import { Loading } from './loading'
+import { useError } from './error/error-provider'
 
 function JoinLink({ gameCode }) {
   const userID = useUserID()

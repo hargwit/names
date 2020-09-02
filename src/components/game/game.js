@@ -3,7 +3,7 @@ import { GameProvider, useGame } from './game-provider'
 import { GAME_STATE } from '../../constants'
 import { navigate, Location } from '@reach/router'
 import { useUserID } from '../../user-context/user-provider'
-import { Loading } from '../loading/loading'
+import { Loading } from '../loading'
 import { Button, Modal, InputGroup, FormControl } from 'react-bootstrap'
 
 const styles = {
