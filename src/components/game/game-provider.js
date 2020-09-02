@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import db from '../../firebase'
 
-import { Loading } from '../loading'
+import { Loading } from 'components/loading'
 
 const GameContext = createContext()
 

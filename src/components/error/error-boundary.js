@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Alert } from 'react-bootstrap'
-import { Container } from '../layout/container'
+import { Container } from 'components/layout/container'
 
 class ErrorBoundary extends React.Component {
   constructor(props) {

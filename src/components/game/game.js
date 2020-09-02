@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { GameProvider, useGame } from './game-provider'
-import { GAME_STATE } from '../../constants'
-import { navigate, Location } from '@reach/router'
-import { useUserID } from '../../user-context/user-provider'
-import { Loading } from '../loading'
 import { Button, Modal, InputGroup, FormControl } from 'react-bootstrap'
+import { navigate, Location } from '@reach/router'
+
+import { GameProvider, useGame } from 'components/game/game-provider'
+import { GAME_STATE } from 'constants/game-state'
+import { useUserID } from 'components/user-context/user-provider'
+import { Loading } from 'components/loading'
 
 const styles = {
   gameInfo: {

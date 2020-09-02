@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-
 import { Form, Button, Alert } from 'react-bootstrap'
-
-import { column, alignCenter } from '../layout/styles'
 import { navigate } from '@reach/router'
 
-import { Container } from '../layout/container'
-import { useError } from '../components/error/error-provider'
+import { column, alignCenter } from 'components/layout/styles'
+import { Container } from 'components/layout/container'
+import { useError } from 'components/error/error-provider'
 
 const styles = {
   errorAlert: {

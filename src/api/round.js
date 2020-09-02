@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import db from '../firebase'
-import { GAME_STATE } from '../constants'
+import { GAME_STATE } from 'constants/game-state'
 
 const useEndRound = (gameCode) => {
   const [loading, setLoading] = useState(false)
@@ -20,4 +20,4 @@ const useEndRound = (gameCode) => {
   return [endRound, loading]
 }
 
-export { useTakeTurn, useEndRound }
+export { useEndRound }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Spinner } from 'react-bootstrap'
-import { Container } from './layout/container'
+import { Container } from 'components/layout/container'
 
 const Loading = () => (
   <Container>

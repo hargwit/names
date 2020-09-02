@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import { useGame } from '../components/game/game-provider'
+import { useGame } from 'components/game/game-provider'
 
-import { column, alignCenter } from '../layout/styles'
+import { column, alignCenter } from 'components/layout/styles'
 import { Form, Button } from 'react-bootstrap'
-import { useSubmitNames } from '../api/submit-names'
+import { useSubmitNames } from 'api/submit-names'
 
-import { Container } from '../layout/container'
-import { Loading } from '../loading/loading'
-import { useUserID } from '../user-context/user-provider'
+import { Container } from 'components/layout/container'
+import { Loading } from 'components/loading'
+import { useUserID } from 'components/user-context/user-provider'
 
 const styles = {
   button: {

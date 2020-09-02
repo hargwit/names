@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import { Button } from 'react-bootstrap'
 import { FaUndo, FaPause, FaPlay } from 'react-icons/fa'
-import { useAudio } from './audio'
+import { useAudio } from 'components/timer/audio'
 
 const styles = {
   timer: {

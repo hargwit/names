@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
-import { useGame } from '../components/game/game-provider'
-import { Container } from '../layout/container'
-import { CenteredColumn } from '../layout/centered-column'
 import { Button, Modal } from 'react-bootstrap'
-import { useUserID } from '../user-context/user-provider'
-import { useTakeTurn, useEndRound } from '../api/round'
-import { useTakeTurn } from '../api/turn'
-import { Loading } from '../loading/loading'
-import { Timer } from '../timer/timer'
+
+import { useGame } from 'components/game/game-provider'
+import { Container } from 'components/layout/container'
+import { CenteredColumn } from 'components/layout/centered-column'
+import { useUserID } from 'components/user-context/user-provider'
+import { Loading } from 'components/loading'
+import { Timer } from 'components/timer/timer'
+
+import { useEndRound } from 'api/round'
+import { useTakeTurn } from 'api/turn'
 
 const styles = {
   button: {

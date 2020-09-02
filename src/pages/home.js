@@ -1,16 +1,13 @@
 import React from 'react'
-
 import { Button } from 'react-bootstrap'
 import { navigate } from '@reach/router'
 
-import { useCreateGame } from '../api/game/create-game'
+import { column, alignCenter } from 'components/layout/styles'
+import { Container } from 'components/layout/container'
+import { Loading } from 'components/loading'
+import { useUserID } from 'components/user-context/user-provider'
 
-import { column, alignCenter } from '../layout/styles'
-
-import { Container } from '../layout/container'
-
-import { Loading } from '../loading/loading'
-import { useUserID } from '../user-context/user-provider'
+import { useCreateGame } from 'api/game/create-game'
 
 const styles = {
   button: {

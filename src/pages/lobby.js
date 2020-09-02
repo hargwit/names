@@ -1,11 +1,11 @@
 import React from 'react'
-import { useGame } from '../components/game/game-provider'
-import { column, alignCenter } from '../layout/styles'
+import { useGame } from 'components/game/game-provider'
+import { column, alignCenter } from 'components/layout/styles'
 import { Button } from 'react-bootstrap'
-import { useStartGame, useEndGame } from '../api/startGame'
+import { useStartGame, useEndGame } from 'api/game/startGame'
 
-import { Container } from '../layout/container'
-import { NEXT_ROUND_NAME } from '../constants'
+import { Container } from 'components/layout/container'
+import { ROUND_NAME } from 'constants/dictionary'
 
 const styles = {
   button: {
@@ -60,9 +60,7 @@ const Lobby = () => {
           variant='primary'
           size='lg'
         >
-          {starting
-            ? 'Starting...'
-            : `Start ${NEXT_ROUND_NAME[game.round]} round`}
+          {starting ? 'Starting...' : `Start ${ROUND_NAME[game.round]} round`}
         </Button>
       )}
     </Container>
