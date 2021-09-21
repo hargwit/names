@@ -11,7 +11,7 @@
     "react-bootstrap": "^1.6.3",
     "react-countdown-circle-timer": "^1.2.1",
     "react-dom": "^16.14.0",
-    "react-icons": "^3.9.0",
+    "react-icons": "^3.11.0",
     "react-scripts": "3.4.1",
     "vanilla-create-reducer": "^1.1.0"
   },
