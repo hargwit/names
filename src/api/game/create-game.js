@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import db from '../../firebase'
 import { GAME_STATE } from 'constants/game-state'
+import naughtyWords from 'naughty-words'
 
 const initialGame = (gameID, userID) => ({
   id: gameID,
@@ -47,7 +48,7 @@ function createUniqueID(size) {
 
 const getSafeID = (size) => {
   let id = createID(size)
-  while (profanities.includes(id.toLowerCase())) {
+  while (naughtyWords.en.includes(id.toLowerCase())) {
     id = createID(size)
   }
   return id
@@ -61,35 +62,5 @@ const createID = (size) => {
   }
   return letters.join('')
 }
-
-const profanities = [
-  'arse',
-  'bint',
-  'butt',
-  'cock',
-  'cunt',
-  'crap',
-  'damn',
-  'dick',
-  'gays',
-  'gayz',
-  'fany',
-  'feck',
-  'fuck',
-  'fukc',
-  'fukk',
-  'jizz',
-  'niga',
-  'piss',
-  'rape',
-  'shag',
-  'shit',
-  'slag',
-  'slut',
-  'tart',
-  'tits',
-  'twat',
-  'wank',
-]
 
 export { useCreateGame }
